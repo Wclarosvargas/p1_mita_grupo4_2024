@@ -57,9 +57,52 @@ def mostrar_menu():
     '''
     Muestra el menú de opciones del CRUD.
     '''
-    print('Seleccionar una opción, (1)crear,(2)leer, (3)salir')
+    print('Seleccionar una opción, (1)Crear,(2)Leer, (3)Actualizar,(4)Eliminar,(5)Salir')
+
+def actualizar(matriz):
+    '''
+    Actualiza los datos del estudiante mediante el ingreso de los datos
+    '''
+    id = int(input("Ingrese el ID del estudiante que desea actualizar:"))
+
+    #Busca el estudiante por su ID
+    for i in range(len(matriz)):
+        if matriz[i][0]==id :
+            print("Estudiante encontrado")
+            nombre = input("Ingrese el nuevo nombre del estudiante:")
+            apellido = input("Ingrese el nuevo apellido del estudiante:")
+            promedio = float(input("Ingrese el nuevo promedio del estudiante:"))
+
+            #Capitalizar los nombre y apellidos de los nuevos datos ingresados
+            nombre_capitalizado = nombre.capitalize()
+            apellido_capitalizado = apellido.capitalize()
+
+            #Actualización de los datos
+            matriz[i]=[id,nombre_capitalizado,apellido_capitalizado,promedio]
+            print("Los datos fueron actualizados")
+            return matriz
+    print("Estudiante no encontrado.")
+    return matriz
+
+def eliminar(matriz):
+    '''
+    eliminara un estudiante especifico 
+    '''
+    id = int(input("Ingrese el ID del estudiante que desea eliminar:"))
+
+    #Busca el estudiante por ID
+    for i in range(len(matriz)):
+        if matriz[i][0] == id:
+            matriz.pop(i) #La función pop eliminar los datos de la matriz que se encuentra en el ID ingresado
+            print("Estudiante eliminado con éxito")
+            return matriz
+        
+    print("Estudiante no fue encontrado")
+    return matriz
+
 
 def main():
+    #Matríz estudiante, los primeros tres datos seran ingresados por defecto del programa
     estudiante = [
         [101,"weimar","claros",8.5],
         [105,"juana","pantilla",6.8],
@@ -79,6 +122,10 @@ def main():
         elif accion == 2:
             mostrar_matriz(estudiante_capitalizado)
         elif accion == 3:
+            actualizar(estudiante_capitalizado)
+        elif accion == 4:
+            eliminar(estudiante_capitalizado)
+        elif accion == 5:
             print('Saliendo del programa')
             flag = 1
         else:
