@@ -9,18 +9,18 @@ def mostrar_matriz(matriz):
     '''
     pos: mostrara la matriz 
     '''
-    estudiantes = [[id,nombre[:10],apellido[:10],promedio] for id,nombre,apellido,promedio in matriz]
+    estudiantes = [[id,nombre[:10],apellido[:12],promedio] for id,nombre,apellido,promedio in matriz]
 
     #Ordena la lista de estudiantes por promedio descendente y luego por ID de forma ascendente
     estudiante_ordenados = sorted(estudiantes, key=lambda x: (-x[3],x[0]))
     
     #se imprimira los encabezados
-    print(f"{'ID':<5}{'Nombre':<10}{'Apellido':<10}{'Promedio':<8}")
+    print(f"{'ID':<5}{'Nombre':<10}{'Apellido':<10}{'Promedio':>10}")
     print("-"*36) #Línea de separación de los encabezados 
 
     #Impresión de filas de datos
     for estudiante in estudiante_ordenados:
-        print(f"{estudiante[0]:<5}{estudiante[1]:<10}{estudiante[2]:<10}{estudiante[3]:<8.2f}")
+        print(f"{estudiante[0]:<5}{estudiante[1]:<10}{estudiante[2]:<10}{estudiante[3]:>10.2f}")
 
     
 
@@ -41,7 +41,7 @@ def crear(matriz):
     Se espera que cree los datos del estudiante
     '''
     pepetonyo=1
-    while pepetonyo==1:
+    while pepetonyo==1: #Verificamos que el ID no sea igual a otro ya existente
         pepetonyo=0
         print("Ingrese el ID del estudiante: ")
         id = int(input())
@@ -54,9 +54,13 @@ def crear(matriz):
     nombre = input()
     print("Ingrese el apellido del estudiante: ")
     apellido = input()
-    print("Ingrese el promedio del estudiante: ")
-    promedio = float(input())
-        
+    while pepetonyo==0: #Verificamos que el promedio este entre 1 y 10
+        pepetonyo=1
+        print("Ingrese el promedio del estudiante: ")
+        promedio = float(input())
+        if 1>promedio or promedio>10:
+            pepetonyo=0
+            print("El promedio debe estar entre 1 y 10") 
     nombre_capitalizado = nombre.capitalize()
     apellido_capitalizado = apellido.capitalize()
 
@@ -81,14 +85,19 @@ def actualizar(matriz):
     #Busca el estudiante por su ID
     for i in range(len(matriz)):
         if matriz[i][0]==id :
-            print("Estudiante encontrado")
+            print("Estudiante encontrado")       
             print("Ingrese el nuevo nombre del estudiante:")
             nombre = input()
             print("Ingrese el nuevo apellido del estudiante:")
             apellido = input()
-            print("Ingrese el nuevo promedio del estudiante:")
-            promedio = float(input())
-
+            pepetonyo=0
+            while pepetonyo==0: #Verificamos que el promedio este entre 1 y 10
+                pepetonyo=1
+                print("Ingrese el nuevo promedio del estudiante: ")
+                promedio = float(input())
+                if 1>promedio or promedio>10:
+                    pepetonyo=0
+                    print("El promedio debe estar entre 1 y 10") 
             #Capitalizar los nombre y apellidos de los nuevos datos ingresados
             nombre_capitalizado = nombre.capitalize()
             apellido_capitalizado = apellido.capitalize()
@@ -134,10 +143,10 @@ def main():
     #Las funciones creadas son llamadas en esta función main 
     #Los datos son ing
 
-    estudiante_capitalizado = conversion(estudiante)
     flag = 0
 
     while flag  == 0:
+        estudiante_capitalizado = conversion(estudiante)
         mostrar_menu()
         accion = int(input().strip())
 
