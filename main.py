@@ -40,10 +40,14 @@ def crear(matriz):
     Se encargar de ingreso de los datos del alumno
     Se espera que cree los datos del estudiante
     '''
-    id = int(input("Ingrese el ID del estudiante: "))
-    nombre = input("Ingrese el nombre del estudiante: ")
-    apellido = input("Ingrese el apellido del estudiante: ")
-    promedio = float(input("Ingrese el promedio del estudiante: "))
+    print("Ingrese el ID del estudiante: ")
+    id = int(input())
+    print("Ingrese el nombre del estudiante:")
+    nombre = input()
+    print("Ingrese el apellido del estudiante: ")
+    apellido = input()
+    print("Ingrese el promedio del estudiante: ")
+    promedio = float(input())
         
     nombre_capitalizado = nombre.capitalize()
     apellido_capitalizado = apellido.capitalize()
@@ -63,15 +67,19 @@ def actualizar(matriz):
     '''
     Actualiza los datos del estudiante mediante el ingreso de los datos
     '''
-    id = int(input("Ingrese el ID del estudiante que desea actualizar:"))
+    print("Ingrese el ID del estudiante que desea actualizar:")
+    id = int(input())
 
     #Busca el estudiante por su ID
     for i in range(len(matriz)):
         if matriz[i][0]==id :
             print("Estudiante encontrado")
-            nombre = input("Ingrese el nuevo nombre del estudiante:")
-            apellido = input("Ingrese el nuevo apellido del estudiante:")
-            promedio = float(input("Ingrese el nuevo promedio del estudiante:"))
+            print("Ingrese el nuevo nombre del estudiante:")
+            nombre = input()
+            print("Ingrese el nuevo apellido del estudiante:")
+            apellido = input()
+            print("Ingrese el nuevo promedio del estudiante:")
+            promedio = float(input())
 
             #Capitalizar los nombre y apellidos de los nuevos datos ingresados
             nombre_capitalizado = nombre.capitalize()
@@ -88,7 +96,8 @@ def eliminar(matriz):
     '''
     eliminara un estudiante especifico 
     '''
-    id = int(input("Ingrese el ID del estudiante que desea eliminar:"))
+    print("Ingrese el ID del estudiante que desea eliminar:")
+    id = int(input())
 
     #Busca el estudiante por ID
     for i in range(len(matriz)):
@@ -108,6 +117,14 @@ def main():
         [105,"juana","pantilla",6.8],
         [102,"juana","pantilla",6.8]
     ]
+
+    '''
+    Las funciones creadas son llamadas en está función main
+    Los datos son ingresados por teclado
+    1 = crear, 2=mostrar, 3=actualizar, 4= eliminar, y 5 = salir 
+    '''
+    #Las funciones creadas son llamadas en esta función main 
+    #Los datos son ing
 
     estudiante_capitalizado = conversion(estudiante)
     flag = 0
