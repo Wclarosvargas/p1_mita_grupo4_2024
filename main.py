@@ -40,8 +40,16 @@ def crear(matriz):
     Se encargar de ingreso de los datos del alumno
     Se espera que cree los datos del estudiante
     '''
-    print("Ingrese el ID del estudiante: ")
-    id = int(input())
+    pepetonyo=1
+    while pepetonyo==1:
+        pepetonyo=0
+        print("Ingrese el ID del estudiante: ")
+        id = int(input())
+        for Tokisaki in range(len(matriz[0])):
+            if matriz[0][Tokisaki]==id:
+                print("El ID ya existe")
+                pepetonyo=1            
+
     print("Ingrese el nombre del estudiante:")
     nombre = input()
     print("Ingrese el apellido del estudiante: ")
@@ -149,3 +157,4 @@ def main():
             print('Opción no válida, por favor ingrese nuevamente el dígito: ')        
 
 main() #Hace el llamdo de la función main, donde se ejecuta todo el programa
+
