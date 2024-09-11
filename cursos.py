@@ -78,60 +78,25 @@ def mostrar_curso(matriz):
 
 #Definición actualizar matriz cursos
 #Modificar esta función para que modifique el id_curso, id del profesor, fecha, horario 
-"""
+
 def actualizar_curso(matriz):
     '''
     Actualiza los datos de la matríz curso mediante el ingreso de los datos
+    Se espera que sean modificados id_curso, id_profesor, fecha y horario
     '''
     print("Ingrese el ID del curso que desea actualizar:")
     id = int(input())
 
-    #Busca el estudiante por su ID
-    for i in range(len(matriz)):
-        if matriz[i][0]==id :
-            print("Curso encontrado")       
-            print("Ingrese el nuevo nombre del estudiante:")
-            nombre = input()
-            print("Ingrese el nuevo apellido del estudiante:")
-            apellido = input()
-            flag=0
-            while flag==0: #Verificamos que el promedio este entre 1 y 10
-                flag=1
-                print("Ingrese el nuevo promedio del estudiante: ")
-                promedio = float(input())
-                if 1>promedio or promedio>10:
-                    flag=0
-                    print("El promedio debe estar entre 1 y 10") 
-            #Capitalizar los nombre y apellidos de los nuevos datos ingresados
-            nombre_capitalizado = nombre.capitalize()
-            apellido_capitalizado = apellido.capitalize()
+    #Busca el curso por su ID, tomando su primer elemento 
+    for curso in range(len(matriz)):
+        if matriz[curso][0] == id:
+            print("Curso encontrado")
+            print("Ingrese el nuevo id del profesor:")
+            profesor = input()
+            print("Ingrese la nueva fecha:")
+            fecha = input()
+            
 
-            #Actualización de los datos
-            matriz[i]=[id,nombre_capitalizado,apellido_capitalizado,promedio]
-            print("Los datos fueron actualizados")
-            return matriz
-    print("Estudiante no encontrado.")
-    return matriz
-
-
-#Modificar esta función eliminar para que elimine los datos de la matríz curso por medio de id
-def eliminar(matriz):
-    '''
-    eliminara un estudiante especifico 
-    '''
-    print("Ingrese el ID del estudiante que desea eliminar:")
-    id = int(input())
-
-    #Busca el estudiante por ID
-    for i in range(len(matriz)):
-        if matriz[i][0] == id:
-            matriz.pop(i) #La función pop eliminar los datos de la matriz que se encuentra en el ID ingresado
-            print("Estudiante eliminado con éxito")
-            return matriz
-        
-    print("Estudiante no fue encontrado")
-    return matriz
-"""
 
 def mostrar_menu():
     '''
