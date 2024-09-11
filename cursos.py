@@ -95,6 +95,7 @@ def actualizar_curso(matriz):
             profesor = input()
             print("Ingrese la nueva fecha:")
             fecha = input()
+            print("Añadir curso")
             
 
 
