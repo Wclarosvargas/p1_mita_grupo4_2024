@@ -1,28 +1,11 @@
+from estudiantes import crear,mostrar_matriz,actualizar,eliminar
+
 estudiante = [
     [101,"weimar","claros",8.5],
     [105,"juana","pantilla",6.8],
     [102,"juana","pantilla",6.8]
 ]
 
-#Funciones
-def mostrar_matriz(matriz):
-    '''
-    pos: mostrara la matriz 
-    '''
-    estudiantes = [[id,nombre[:10],apellido[:12],promedio] for id,nombre,apellido,promedio in matriz]
-
-    #Ordena la lista de estudiantes por promedio descendente y luego por ID de forma ascendente
-    estudiante_ordenados = sorted(estudiantes, key=lambda x: (-x[3],x[0]))
-    
-    #se imprimira los encabezados
-    print(f"{'ID':<5}{'Nombre':<10}{'Apellido':<10}{'Promedio':>10}")
-    print("-"*36) #Línea de separación de los encabezados 
-
-    #Impresión de filas de datos
-    for estudiante in estudiante_ordenados:
-        print(f"{estudiante[0]:<5}{estudiante[1]:<10}{estudiante[2]:<10}{estudiante[3]:>10.2f}")
-
-    
 
 def conversion(matriz):
     '''
@@ -35,97 +18,12 @@ def conversion(matriz):
         matriz[i] = [id,nombre_capitalizado,apellido_capitalizado,promedio]
     return matriz
 
-def crear(matriz):
-    '''
-    Se encargar de ingreso de los datos del alumno
-    Se espera que cree los datos del estudiante
-    '''
-    pepetonyo=1
-    while pepetonyo==1: #Verificamos que el ID no sea igual a otro ya existente
-        pepetonyo=0
-        print("Ingrese el ID del estudiante: ")
-        id = int(input())
-        for Tokisaki in range(len(matriz[0])):
-            if matriz[0][Tokisaki]==id:
-                print("El ID ya existe")
-                pepetonyo=1            
-
-    print("Ingrese el nombre del estudiante:")
-    nombre = input()
-    print("Ingrese el apellido del estudiante: ")
-    apellido = input()
-    while pepetonyo==0: #Verificamos que el promedio este entre 1 y 10
-        pepetonyo=1
-        print("Ingrese el promedio del estudiante: ")
-        promedio = float(input())
-        if 1>promedio or promedio>10:
-            pepetonyo=0
-            print("El promedio debe estar entre 1 y 10") 
-    nombre_capitalizado = nombre.capitalize()
-    apellido_capitalizado = apellido.capitalize()
-
-    #Crea una nueva entrada
-    nuevo_estudiante = [id,nombre_capitalizado,apellido_capitalizado,promedio]
-    print("Estudiante agregado con éxito.")
-    matriz.append(nuevo_estudiante)
 
 def mostrar_menu():
     '''
     Muestra el menú de opciones del CRUD.
     '''
     print('Seleccionar una opción, (1)Crear,(2)Leer, (3)Actualizar,(4)Eliminar,(5)Salir')
-
-def actualizar(matriz):
-    '''
-    Actualiza los datos del estudiante mediante el ingreso de los datos
-    '''
-    print("Ingrese el ID del estudiante que desea actualizar:")
-    id = int(input())
-
-    #Busca el estudiante por su ID
-    for i in range(len(matriz)):
-        if matriz[i][0]==id :
-            print("Estudiante encontrado")       
-            print("Ingrese el nuevo nombre del estudiante:")
-            nombre = input()
-            print("Ingrese el nuevo apellido del estudiante:")
-            apellido = input()
-            pepetonyo=0
-            while pepetonyo==0: #Verificamos que el promedio este entre 1 y 10
-                pepetonyo=1
-                print("Ingrese el nuevo promedio del estudiante: ")
-                promedio = float(input())
-                if 1>promedio or promedio>10:
-                    pepetonyo=0
-                    print("El promedio debe estar entre 1 y 10") 
-            #Capitalizar los nombre y apellidos de los nuevos datos ingresados
-            nombre_capitalizado = nombre.capitalize()
-            apellido_capitalizado = apellido.capitalize()
-
-            #Actualización de los datos
-            matriz[i]=[id,nombre_capitalizado,apellido_capitalizado,promedio]
-            print("Los datos fueron actualizados")
-            return matriz
-    print("Estudiante no encontrado.")
-    return matriz
-
-def eliminar(matriz):
-    '''
-    eliminara un estudiante especifico 
-    '''
-    print("Ingrese el ID del estudiante que desea eliminar:")
-    id = int(input())
-
-    #Busca el estudiante por ID
-    for i in range(len(matriz)):
-        if matriz[i][0] == id:
-            matriz.pop(i) #La función pop eliminar los datos de la matriz que se encuentra en el ID ingresado
-            print("Estudiante eliminado con éxito")
-            return matriz
-        
-    print("Estudiante no fue encontrado")
-    return matriz
-
 
 def main():
     #Matríz estudiante, los primeros tres datos seran ingresados por defecto del programa
