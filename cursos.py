@@ -1,6 +1,25 @@
 from validaciones import validar_id_unico_clase, validar_horario, validar_id_profesor, validar_fecha
 
-def crear_clase(matriz, profesores_matriz):
+cursos = [
+    [202,102,'15-09-2024','10:30AM'],
+    [205,12,'17-07-2024', '11:40PM']
+]
+
+# Lista de profesores
+profesores = [
+    [14, 'Carlos', 'Pérez'],
+    [25, 'Ana', 'García'],
+    [36, 'Luis', 'Martínez'],
+    [43, 'María', 'Lopez'],
+    [56, 'José', 'Hernández'],
+    [62, 'Laura', 'Gómez'],
+    [79, 'Miguel', 'Rodríguez'],
+    [80, 'Sofía', 'Fernández'],
+    [96, 'Jorge', 'Sánchez'],
+    [107, 'Isabel', 'Ramírez']
+]
+
+def crear_clase(matriz):
     '''
     Se encargara del ingreso de datos de la clase
     '''
@@ -18,7 +37,7 @@ def crear_clase(matriz, profesores_matriz):
     nombre_curso = input()
     print("Ingrese el ID del profesor:")
     id_profesor = int(input())         
-    if validar_id_profesor(id_profesor, profesores_matriz) == 0:
+    if validar_id_profesor(profesores,id_profesor) == 0:
         print("ID del profesor no válido. Por favor, ingrese un ID de profesor válido. ")
         return
 
@@ -44,4 +63,28 @@ def crear_clase(matriz, profesores_matriz):
     print("Clase agregada con éxito.")
     matriz.append(nueva_clase)        
 
+def mostrar_menu():
+    '''
+    Muestra el menú de opciones del CRUD.
+    '''
+    print('Seleccionar una opción, (1)Crear, (2) Salir : ')
 
+
+def main():
+    
+
+    flag = 0
+
+    while flag  == 0:
+        mostrar_menu()
+        accion = int(input().strip())
+
+        if accion == 1:
+            crear_clase(cursos)
+        elif accion == 2:
+            print('Saliendo del programa')
+            flag = 1
+        else:
+            print('Opción no válida, por favor ingrese nuevamente el dígito: ')  
+
+main()

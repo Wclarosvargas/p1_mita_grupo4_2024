@@ -46,15 +46,15 @@ def validar_id_profesor(matriz,id):
     '''
     for profe in matriz:
         if profe[0] == id:
-            return 0
-    return 1
+            return 1
+    return 0
 
 def validar_fecha(fecha):
     """
     Verifica si la fecha está en el formato 'YYYY-MM-DD' mediante el uso de expresiones regulares.
     """
     # Expresión regular para verificar el formato de fecha
-    patron = r'^\d{4}-\d{2}-\d{2}$'
+    patron = r'^\d{2}-\d{2}-\d{4}$'
     if re.match(patron, fecha):
         # La fecha se encuentra en el formato correcto
         return 1
