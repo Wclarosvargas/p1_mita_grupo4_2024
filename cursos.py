@@ -78,7 +78,7 @@ def mostrar_curso(matriz):
 
 #Definición actualizar matriz cursos
 #Modificar esta función para que modifique el id_curso, id del profesor, fecha, horario 
-
+"""
 def actualizar_curso(matriz):
     '''
     Actualiza los datos de la matríz curso mediante el ingreso de los datos
@@ -91,19 +91,36 @@ def actualizar_curso(matriz):
     for curso in range(len(matriz)):
         if matriz[curso][0] == id:
             print("Curso encontrado")
-            print("Ingrese el nuevo id del profesor:")
-            profesor = input()
-            print("Ingrese la nueva fecha:")
-            fecha = input()
-            print("Añadir curso")
-            
+            print("Ingrese el ID del profesor a modificar:")
+            id_profesor = int(input())         
+            if validar_id_profesor(profesores,id_profesor) == 0:
+                print("ID del profesor no válido. Por favor, ingrese un ID de profesor válido. ")
+            return
+"""
+
+#Se definio la función eliminar del CRUD
+def eliminar_curso(matriz):
+    '''
+    Tomara el id del curso y eliminara todos los elementos pertenecientes a ese id
+    '''            
+    print("Ingrese el ID del curso que desea eliminar:") 
+    id = int(input())       
+
+    #Busca el estudiante por ID
+    for curso in range(len(matriz)):
+        if matriz[curso][0] == id:
+            matriz.pop(curso) #La función pop eliminara los datos de la matríz que se encuentra en el ID ingresado
+            print("El curso fue eliminado con éxito")
+            return matriz
+    print("Curso no fue encontrado. Por favor ingrese nuevamanente el ID del curso a buscar")   
+    return matriz 
 
 
 def mostrar_menu():
     '''
     Muestra el menú de opciones del CRUD.
     '''
-    print('Seleccionar una opción, (1)Crear, (2) leer, (3)Salir : ')
+    print('Seleccionar una opción, (1)Crear, (2) leer, (4)Eliminar, (5)Salir : ')
 
 
 def main():
@@ -119,7 +136,9 @@ def main():
             crear_clase(cursos)
         elif accion == 2:
             mostrar_curso(cursos)
-        elif accion == 3:
+        elif accion == 4:
+            eliminar_curso(cursos)
+        elif accion == 5:
             print('Saliendo del programa')
             flag = 1
         else:

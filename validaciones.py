@@ -61,3 +61,16 @@ def validar_fecha(fecha):
     else:
         # La fecha no se encuentra en el formato correcto
         return 0
+    
+
+#funciones abocados a validaciones para la matriz asistencias
+
+def validar_id_unico_asistencia(matriz,id):
+    '''
+    Verifica si el ID  de asistencia no se encuentra repetido
+    '''
+    for asistencia in matriz:
+        if asistencia[0] == id:
+            return 0 # ID ya existe 
+        return 1 # ID único
+    
