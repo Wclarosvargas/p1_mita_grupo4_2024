@@ -1,8 +1,8 @@
 from validaciones import validar_id_unico_clase, validar_horario, validar_id_profesor, validar_fecha
 
 cursos = [
-    [202,102,'15-09-2024','10:30AM'],
-    [205,12,'17-07-2024', '11:40PM']
+    [202,102,'15-09-2024','10:30-11:30'],
+    [205,12,'17-07-2024', '11:40-13:20']
 ]
 
 # Lista de profesores
@@ -33,8 +33,6 @@ def crear_clase(matriz):
         else:
             print("El ID de la clase ya existee, Por favor, ingrese un ID diferente.")
 
-    print("Ingrese nombre del curso:")
-    nombre_curso = input()
     print("Ingrese el ID del profesor:")
     id_profesor = int(input())         
     if validar_id_profesor(profesores,id_profesor) == 0:
@@ -59,15 +57,33 @@ def crear_clase(matriz):
         else:
             print("Fecha inválida. Por favor, ingresar una fecha con formato 'DD-MM-YYYY'.")
 
-    nueva_clase = [id,nombre_curso,id_profesor,fecha,horario]
+    nueva_clase = [id,id_profesor,fecha,horario]
     print("Clase agregada con éxito.")
-    matriz.append(nueva_clase)        
+    matriz.append(nueva_clase)
+
+
+def mostrar_curso(matriz):
+    '''
+    Pos: está funcion se encargara de mostrar la matriz de cursos
+    '''
+    curso = [[id,id_profesor,fecha[:13],horario[:13]] for id,id_profesor,fecha,horario in matriz]
+
+    #Impresión de encabezados
+    print(f"{'ID':<5}{'ID_profesor':<5}{'Fecha':>13}{'Horario':>20}")  
+    print("-"*50)          
+
+    #Impresión de filas de datos
+    for i in curso:
+        print(f"{i[0]:<5}{i[1]:>8}{i[2]:>17}{i[3]:>20}")
+
+
+
 
 def mostrar_menu():
     '''
     Muestra el menú de opciones del CRUD.
     '''
-    print('Seleccionar una opción, (1)Crear, (2) Salir : ')
+    print('Seleccionar una opción, (1)Crear, (2) leer, (3)Salir : ')
 
 
 def main():
@@ -82,6 +98,8 @@ def main():
         if accion == 1:
             crear_clase(cursos)
         elif accion == 2:
+            mostrar_curso(cursos)
+        elif accion == 3:
             print('Saliendo del programa')
             flag = 1
         else:
