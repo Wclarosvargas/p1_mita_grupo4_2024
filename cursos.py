@@ -78,25 +78,64 @@ def mostrar_curso(matriz):
 
 #Definición actualizar matriz cursos
 #Modificar esta función para que modifique el id_curso, id del profesor, fecha, horario 
-"""
 def actualizar_curso(matriz):
     '''
     Actualiza los datos de la matríz curso mediante el ingreso de los datos
     Se espera que sean modificados id_curso, id_profesor, fecha y horario
     '''
     print("Ingrese el ID del curso que desea actualizar:")
-    id = int(input())
+    id_curso = int(input())
 
-    #Busca el curso por su ID, tomando su primer elemento 
+    #Busca el curso por su ID
     for curso in range(len(matriz)):
-        if matriz[curso][0] == id:
-            print("Curso encontrado")
-            print("Ingrese el ID del profesor a modificar:")
-            id_profesor = int(input())         
-            if validar_id_profesor(profesores,id_profesor) == 0:
-                print("ID del profesor no válido. Por favor, ingrese un ID de profesor válido. ")
-            return
-"""
+        if matriz[curso][0] == id_curso:
+            print("Curso encontrado.")
+
+            
+
+            #Solicita el nuevo ID del profesor
+            flag = 0
+            while flag == 0:
+                print("Ingrese el nuevo ID del profesor:")
+                id_profesor = int(input())
+
+                if validar_id_profesor(profesores,id_profesor) == 1:
+                    flag = 1
+                else:
+                    print("ID del profesor no válido. Por favor, ingrese un ID de profesor válido.")
+            
+
+            #Solicita la nueva fecha
+            flag = 0
+            while flag == 0:
+                print("Ingrese la nueva fecha (formato DD-MM-YYYY):")
+                fecha = input()
+
+            #Valida la fecha ingresada
+                if validar_fecha(fecha) == 1:
+                    flag = 1
+                else:
+                    print("Fecha inválida. Por favor, ingresar una fecha con formato 'DD-MM-YYYY'.")
+                
+            
+            #Solicitar el nuevo horario
+            flag = 0
+            while flag == 0:
+                print("Ingrese el nuevo horario (formato HH:MM-HH:MM)")
+                horario = input()
+
+            #Validar la variable horario
+                if validar_horario(horario) == 1:
+                    flag = 1
+                else:
+                    print("Horario inválido. Por favor, ingrese un horario válido en formato 'HH:MM-HH:MM'.")
+
+            #Actualización de los datos
+            matriz[curso] = [id_curso, id_profesor, fecha, horario]
+            print("Los datos del curso fueron actualizados exitosamente.")
+            return 
+        
+    print("ID del curso no encontrado.")    
 
 #Se definio la función eliminar del CRUD
 def eliminar_curso(matriz):
@@ -120,7 +159,7 @@ def mostrar_menu():
     '''
     Muestra el menú de opciones del CRUD.
     '''
-    print('Seleccionar una opción, (1)Crear, (2) leer, (4)Eliminar, (5)Salir : ')
+    print('Seleccionar una opción, (1)Crear, (2) leer,(3)actualizar, (4)Eliminar, (5)Salir : ')
 
 
 def main():
@@ -136,6 +175,8 @@ def main():
             crear_clase(cursos)
         elif accion == 2:
             mostrar_curso(cursos)
+        elif accion == 3:
+            actualizar_curso(cursos)
         elif accion == 4:
             eliminar_curso(cursos)
         elif accion == 5:
