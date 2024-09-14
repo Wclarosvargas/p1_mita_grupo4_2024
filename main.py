@@ -1,5 +1,6 @@
 from estudiantes import crear,mostrar_matriz,actualizar,eliminar
 
+#Este main o tambien conocido como archivo menu servira para el usuario de modo que ingrese los datos 
 
 estudiante = [
     [101,"weimar","claros",8.5],
@@ -24,7 +25,13 @@ def mostrar_menu():
     '''
     Muestra el menú de opciones del CRUD.
     '''
-    print('Seleccionar una opción, (1)Crear,(2)Leer, (3)Actualizar,(4)Eliminar,(5)Salir')
+    print('Opciones dentro del programa:')
+    print('(1) Crear')
+    print('(2) Leer')
+    print('(3) Actualizar')
+    print('(4) Eliminar')
+    print('(5) Salir del programa')
+    print('-'*40)
 
 def main():
     #Matríz estudiante, los primeros tres datos seran ingresados por defecto del programa

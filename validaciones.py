@@ -65,12 +65,30 @@ def validar_fecha(fecha):
 
 #funciones abocados a validaciones para la matriz asistencias
 
-def validar_id_unico_asistencia(matriz,id):
+def validar_id_unico_asistencia(matriz_asistencia,id_asistencia):
     '''
     Verifica si el ID  de asistencia no se encuentra repetido
     '''
-    for asistencia in matriz:
+    for asistencia in matriz_asistencia:
         if asistencia[0] == id:
             return 0 # ID ya existe 
-        return 1 # ID único
-    
+    return 1 # ID único
+
+def validar_id_curso(matriz_curso,id_curso):
+    for curso in matriz_curso:
+        if curso[1] == id_curso:
+            return 0
+    return 1
+
+def validar_id_estudiante(matriz_estudiante, id_estudiante):
+    for estudiante in matriz_estudiante:
+        if estudiante[2] == id_estudiante:
+            return 0
+    return 1
+
+def validar_estado(estado):
+    '''
+    Valida que el estado del estudiante sea 'Presente' o 'Ausente'.
+    '''
+    return estado in {'presente', 'ausente'}
+
