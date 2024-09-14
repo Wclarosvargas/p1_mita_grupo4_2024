@@ -108,6 +108,13 @@ def menu_asistencia():
             if len(matriz_asistencias) == 0:
                 print("No hay registros de asistencia.")
             else:
+                # Contar asistencias presentes 
+                cantida_presentes = len(list(filter(lambda x: x[3] == 'presente', matriz_asistencias)))
+                print(f"\nCantidad de asistencias presentes: {cantida_presentes}")
+                #Cantidad asistencia ausente
+                cantidad_ausentes = len(list(filter(lambda x:x[3] == 'ausente', matriz_asistencias)))
+                print(f"\nCantidad de asistencias ausentes: {cantidad_ausentes}")
+                print("\n")
                 mostrar_asistencia(matriz_asistencias)
         elif opcion == '3':
             actualizar_asistencia(matriz_asistencias, matriz_cursos, matriz_estudiante)
