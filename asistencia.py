@@ -1,11 +1,13 @@
 #Falta desarrollar el CRUD de la matríz asistencias
 from validaciones import validar_fecha, validar_id_unico_asistencia, validar_id_estudiante, validar_id_curso, validar_estado
 
+"""
 asistencias = [
     [102,204,1233,'presente','16-04-2024'],
     [103,405,1232,'ausente','25-12-2024'],
     [105,206,5234,'presente','21-01-2023']
 ]
+"""
 
 def crear_asistencias(matriz_asitencia, matriz_cursos, matriz_estudiantes):
     '''
@@ -153,7 +155,7 @@ def eliminar_asistencia(matriz_asistencia):
             asistencia_encontrada = 1
             print("Registro de asistencia eliminado con éxito.")
             return
-
+"""
 def mostrar_menu():
 
     print('Seleccionar una opción:')
@@ -190,3 +192,5 @@ def main():
 
 
 main()
+
+"""

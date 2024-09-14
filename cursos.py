@@ -1,9 +1,11 @@
 from validaciones import validar_id_unico_clase, validar_horario, validar_id_profesor, validar_fecha
 
+"""
 cursos = [
     [202,102,'15-09-2024','10:30-11:30'],
     [205,12,'17-07-2024', '11:40-13:20']
 ]
+"""
 
 # Lista de profesores
 profesores = [
@@ -155,6 +157,8 @@ def eliminar_curso(matriz):
     return matriz 
 
 
+"""
+
 def mostrar_menu():
     '''
     Muestra el menú de opciones del CRUD.
@@ -186,3 +190,5 @@ def main():
             print('Opción no válida, por favor ingrese nuevamente el dígito: ')  
 
 main()
+
+"""
