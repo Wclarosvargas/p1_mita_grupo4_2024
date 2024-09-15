@@ -2,8 +2,9 @@ from validaciones import validadr_id_unico,validar_promedio
 
 def crear(matriz):
     '''
-    Se encarga del ingreso de datos del estudiante
-    Se espera que cree los datos del estudiante
+    Agrega un nuevo estudiante a la matríz de estudiantes.
+    Solicita al usuario el ID, nombre, apellido y promedio del estudiante,
+    valida los datos y los añade a la matríz si son correctos
     '''
 
     id_valido = 0
@@ -42,7 +43,7 @@ def crear(matriz):
 #Funciones
 def mostrar_matriz(matriz):
     '''
-    pos: mostrara la matriz 
+    Muestra la matríz de estudiantes en formato tabular, ordenada por promedio y ID.
     '''
     estudiantes = [[id,nombre[:10],apellido[:12],promedio] for id,nombre,apellido,promedio in matriz]
 
@@ -60,7 +61,9 @@ def mostrar_matriz(matriz):
 
 def actualizar(matriz):
     '''
-    Actualiza los datos del estudiante mediante el ingreso de los datos
+    Actualiza los datos del estudiante existente en la matriz.
+    Solicita al usuario el ID del estudiante, busca el estudiante por su ID,
+    y actualiza su nombre, apellido y promedio si el estudiante existe.
     '''
     print("Ingrese el ID del estudiante que desea actualizar:")
     id = int(input())
@@ -95,7 +98,9 @@ def actualizar(matriz):
 
 def eliminar(matriz):
     '''
-    eliminara un estudiante especifico 
+    elimina al estudiante de la matriz por su ID.
+    Solicita al usuario el ID del estudiante, busca al estudiante por su ID,
+    y lo elimina si el estudiante existe. 
     '''
     print("Ingrese el ID del estudiante que desea eliminar:")
     id = int(input())

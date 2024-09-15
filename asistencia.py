@@ -142,7 +142,7 @@ def actualizar_asistencia(matriz_asistencia, matriz_cursos,matriz_estudiantes):
 
 def eliminar_asistencia(matriz_asistencia):
     '''
-    Elimina una entrada de asistencia existente.
+    Elimina una entrada de asistencia existente por medio de su ID.
     '''
 
     print("Ingrese el ID de la asistencia que desea eliminar:")

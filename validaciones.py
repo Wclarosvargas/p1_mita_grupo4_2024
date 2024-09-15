@@ -23,7 +23,7 @@ def validar_promedio(promedio):
 
 def validar_id_unico_clase(matriz,id):
     '''
-    Verifica si el Id de la clase ya existe
+    Verifica si el Id de la clase ya existe en la matriz clase
     '''
     for clase in matriz:
         if clase[0] == id:
@@ -75,12 +75,18 @@ def validar_id_unico_asistencia(matriz_asistencia,id_asistencia):
     return 1 # ID único
 
 def validar_id_curso(matriz_curso,id_curso):
+    '''
+    Verifica si el ID del curso existe en la matriz de cursos.
+    '''
     for curso in matriz_curso:
         if curso[1] == id_curso:
             return 0
     return 1
 
 def validar_id_estudiante(matriz_estudiante, id_estudiante):
+    '''
+    Verifica si el ID del estudiante existe en la matriz de estudiantes.
+    '''
     for estudiante in matriz_estudiante:
         if estudiante[2] == id_estudiante:
             return 0

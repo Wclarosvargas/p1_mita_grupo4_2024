@@ -30,6 +30,9 @@ matriz_asistencias = [
 ]
 
 def mostrar_menu():
+    '''
+    Muestra el menú principal del programa.
+    '''
     print("\nMenú Principal")
     print("1. Gestión de estudiantes")
     print("2. Gestión de Cursos")
@@ -37,6 +40,9 @@ def mostrar_menu():
     print("4. Salir del programa")
 
 def menu_estudiantes():
+    '''
+    Gestiona el menú de operaciones de la matriz estudiantes.
+    '''
     flag_estudiantes = 0
     while flag_estudiantes == 0:
         print("\nMenú de Gestión de estudiantes")
@@ -65,6 +71,9 @@ def menu_estudiantes():
 
 
 def menu_cursos():
+    '''
+    Gestiona el menú de operaciones de la matriz cursos.
+    '''
     flag_cursos = 0
     while flag_cursos == 0:
         print("\nMenú de Gestión de Cursos")
@@ -92,6 +101,9 @@ def menu_cursos():
 
 
 def menu_asistencia():
+    '''
+    Gestiona el menú de operaciones de la matríz asistencia.
+    '''
     flag_asistencias = 0
     while flag_asistencias == 0:
         print("\nMenú de Gestión de asistencias")
@@ -126,6 +138,9 @@ def menu_asistencia():
             print("Opción no válida. Intente de nuevo.")
 
 def main():
+    '''
+    Gestiona el flujo del programa.
+    '''
     flag_programa = 0
     while flag_programa == 0:
         mostrar_menu()
