@@ -70,7 +70,7 @@ def validar_id_unico_asistencia(matriz_asistencia,id_asistencia):
     Verifica si el ID  de asistencia no se encuentra repetido
     '''
     for asistencia in matriz_asistencia:
-        if asistencia[0] == id:
+        if asistencia[0] == id_asistencia:
             return 0 # ID ya existe 
     return 1 # ID único
 

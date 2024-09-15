@@ -74,11 +74,11 @@ def mostrar_asistencia(matriz_asistencia):
     Muestra todos los registros de la matriz asistencia.
     '''                 
 
-    print(f"{'ID Asistencia':<15}{'ID Curso':<10}{'ID Estudiante':<15}{'Estado':<10}{'Fecha':<15}")
+    print(f"| {'ID Asistencia':<15} | {'ID Curso':<10} | {'ID Estudiante':<15} | {'Estado':<10} | {'Fecha':<15} |")
     print("-"*65)
 
     for registro in matriz_asistencia:
-        print(f"{registro[0]:<15}{registro[1]:<10}{registro[2]:<15}{registro[3]:<10}{registro[4]:<15}")
+        print(f"| {registro[0]:<15} | {registro[1]:<10} | {registro[2]:<15} | {registro[3]:<10} | {registro[4]:<15} |")
 
 
 def actualizar_asistencia(matriz_asistencia, matriz_cursos,matriz_estudiantes):

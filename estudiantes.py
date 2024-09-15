@@ -51,12 +51,12 @@ def mostrar_matriz(matriz):
     estudiante_ordenados = sorted(estudiantes, key=lambda x: (-x[3],x[0]))
     
     #se imprimira los encabezados
-    print(f"{'ID':<5}{'Nombre':<10}{'Apellido':<10}{'Promedio':>10}")
-    print("-"*36) #Línea de separación de los encabezados 
+    print(f"| {'ID':<5} | {'Nombre':<10} | {'Apellido':<10} | {'Promedio':>10}")
+    print("-"*55) #Línea de separación de los encabezados 
 
     #Impresión de filas de datos
     for estudiante in estudiante_ordenados:
-        print(f"{estudiante[0]:<5}{estudiante[1]:<10}{estudiante[2]:<10}{estudiante[3]:>10.2f}")
+        print(f"| {estudiante[0]:<5} | {estudiante[1]:<10} | {estudiante[2]:<10} | {estudiante[3]:>10.2f} |")
 
 
 def actualizar(matriz):

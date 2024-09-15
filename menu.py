@@ -80,6 +80,7 @@ def menu_cursos():
         print("1. Agregar Curso")
         print("2. Mostrar Cursos")
         print("3. Actualizar curso")
+        print("4. Eliminar curso")
         print("5. Volver al menú principal")
         opcion = input("Seleccione una opción: ")
 

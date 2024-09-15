@@ -71,12 +71,12 @@ def mostrar_curso(matriz):
     curso = [[id,id_profesor,fecha[:13],horario[:13]] for id,id_profesor,fecha,horario in matriz]
 
     #Impresión de encabezados
-    print(f"{'ID':<5}{'ID_profesor':<5}{'Fecha':>13}{'Horario':>20}")  
-    print("-"*50)          
+    print(f"| {'ID':<5} | {'ID_profesor':<5} | {'Fecha':>13} | {'Horario':>20} |")  
+    print("-"*55)          
 
     #Impresión de filas de datos
     for i in curso:
-        print(f"{i[0]:<5}{i[1]:>8}{i[2]:>17}{i[3]:>20}")
+        print(f"| {i[0]:<5} | {i[1]:>8} | {i[2]:>17} | {i[3]:>20} |")
 
 #Definición actualizar matriz cursos
 #Modificar esta función para que modifique el id_curso, id del profesor, fecha, horario 
