@@ -51,7 +51,7 @@ def validar_id_profesor(matriz,id):
 
 def validar_fecha(fecha):
     """
-    Verifica si la fecha está en el formato 'YYYY-MM-DD' mediante el uso de expresiones regulares.
+    Verifica si la fecha está en el formato 'DD-MM-YYYY' mediante el uso de expresiones regulares.
     """
     # Expresión regular para verificar el formato de fecha
     patron = r'^\d{2}-\d{2}-\d{4}$'
