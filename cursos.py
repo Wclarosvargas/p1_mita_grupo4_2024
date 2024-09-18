@@ -1,4 +1,4 @@
-from validaciones import validar_id_unico_clase, validar_horario, validar_id_profesor, validar_fecha
+from validaciones import validadr_id_unico, validar_horario, validar_id_profesor, validar_fecha
 
 """
 cursos = [
@@ -30,7 +30,7 @@ def crear_clase(matriz):
     while id_valido == 0:
         print("Ingrese el ID de la clase:")
         id = int(input())
-        if validar_id_unico_clase(matriz,id):
+        if validadr_id_unico(matriz,id):
             id_valido = 1
         else:
             print("El ID de la clase ya existee, Por favor, ingrese un ID diferente.")

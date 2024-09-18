@@ -1,5 +1,5 @@
 #Falta desarrollar el CRUD de la matríz asistencias
-from validaciones import validar_fecha, validar_id_unico_asistencia, validar_id_estudiante, validar_id_curso, validar_estado
+from validaciones import validar_fecha, validadr_id_unico, validar_id_estudiante, validar_id_curso, validar_estado
 
 """
 asistencias = [
@@ -18,7 +18,7 @@ def crear_asistencias(matriz_asitencia, matriz_cursos, matriz_estudiantes):
     while id_asistencia_valido == 0:
         print("Ingrese el ID de la asistencia:")
         id_asistencia = int(input())
-        if validar_id_unico_asistencia(matriz_asitencia, id_asistencia) == 1:
+        if validadr_id_unico(matriz_asitencia, id_asistencia) == 1:
             id_asistencia_valido = 1
         else:
             print("El ID de la asistencia ya existe. Por favor, ingrese un ID diferente.")

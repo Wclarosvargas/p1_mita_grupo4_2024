@@ -2,7 +2,7 @@ from estudiantes import crear, mostrar_matriz, actualizar, eliminar
 from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso
 from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia
 
-from validaciones import (validadr_id_unico, validar_promedio, validar_id_unico_clase,validar_horario,validar_id_profesor, validar_fecha, validar_id_unico_asistencia, validar_id_estudiante, validar_id_curso, validar_estado)
+from validaciones import (validadr_id_unico, validar_promedio, validar_horario,validar_id_profesor, validar_fecha, validar_id_estudiante, validar_id_curso, validar_estado)
 
 #Datos precargados
 matriz_estudiante = [
