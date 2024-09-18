@@ -45,6 +45,9 @@ def mostrar_matriz(matriz):
     '''
     Muestra la matríz de estudiantes en formato tabular, ordenada por promedio y ID.
     '''
+
+    # Crea una lista 'estudiantes' con ID, nombre truncado a 10 caracteres,
+    # apellido truncado a 12 caracteres y promedio de 'matriz'.
     estudiantes = [[id,nombre[:10],apellido[:12],promedio] for id,nombre,apellido,promedio in matriz]
 
     #Ordena la lista de estudiantes por promedio descendente y luego por ID de forma ascendente
@@ -65,35 +68,44 @@ def actualizar(matriz):
     Solicita al usuario el ID del estudiante, busca el estudiante por su ID,
     y actualiza su nombre, apellido y promedio si el estudiante existe.
     '''
-    print("Ingrese el ID del estudiante que desea actualizar:")
-    id = int(input())
+    bandera = 0
+    while bandera == 0:
+        print("Ingrese el ID del estudiante que desea actualizar:")
+        id = int(input().strip())
 
-    #Busca el estudiante por su ID
-    for i in range(len(matriz)):
-        if matriz[i][0]==id :
-            print("Estudiante encontrado")       
-            print("Ingrese el nuevo nombre del estudiante:")
-            nombre = input()
-            print("Ingrese el nuevo apellido del estudiante:")
-            apellido = input()
-            flag=0
-            while flag==0: #Verificamos que el promedio este entre 1 y 10
-                flag=1
-                print("Ingrese el nuevo promedio del estudiante: ")
-                promedio = float(input())
-                if 1>promedio or promedio>10:
-                    flag=0
-                    print("El promedio debe estar entre 1 y 10") 
-            #Capitalizar los nombre y apellidos de los nuevos datos ingresados
-            nombre_capitalizado = nombre.capitalize()
-            apellido_capitalizado = apellido.capitalize()
 
-            #Actualización de los datos
-            matriz[i]=[id,nombre_capitalizado,apellido_capitalizado,promedio]
-            print("Los datos fueron actualizados")
-            return matriz
-    print("Estudiante no encontrado.")
-    return matriz
+        #Busca el estudiante por su ID
+        encontrado = 0
+        for i in range(len(matriz)):
+            if matriz[i][0]==id :
+                print("Estudiante encontrado")       
+                print("Ingrese el nuevo nombre del estudiante:")
+                nombre = input()
+                print("Ingrese el nuevo apellido del estudiante:")
+                apellido = input()
+
+                #Verificamos que el promedio esté entre 1 y 10
+                flag=0
+                while flag==0: #Verificamos que el promedio este entre 1 y 10
+                    flag=1
+                    print("Ingrese el nuevo promedio del estudiante: ")
+                    promedio = float(input().strip())
+                    if 1>promedio or promedio>10:
+                        flag=0
+                        print("El promedio debe estar entre 1 y 10") 
+                #Capitalizar los nombre y apellidos de los nuevos datos ingresados
+                nombre_capitalizado = nombre.capitalize()
+                apellido_capitalizado = apellido.capitalize()
+
+                #Actualización de los datos
+                matriz[i]=[id,nombre_capitalizado,apellido_capitalizado,promedio]
+                print("Los datos fueron actualizados")
+                bandera = 1 
+                return matriz
+            
+        #Mensaje si no se encuentra el estudiante
+        if encontrado == 0:    
+            print("Estudiante no encontrado.")
 
 
 def eliminar(matriz):
@@ -102,15 +114,25 @@ def eliminar(matriz):
     Solicita al usuario el ID del estudiante, busca al estudiante por su ID,
     y lo elimina si el estudiante existe. 
     '''
-    print("Ingrese el ID del estudiante que desea eliminar:")
-    id = int(input())
+    bandera = 0
+    while bandera == 0:
+        print("Ingrese el ID del estudiante que desea eliminar:")
+        id = int(input())
+        encontrado = 0
+        indices_a_eliminar = []
+        #Busca el estudiante por ID
+        for i in range(len(matriz)):
+            if matriz[i][0] == id:
+                indices_a_eliminar.append(i)
+                encontrado = 1
 
-    #Busca el estudiante por ID
-    for i in range(len(matriz)):
-        if matriz[i][0] == id:
-            matriz.pop(i) #La función pop eliminar los datos de la matriz que se encuentra en el ID ingresado
-            print("Estudiante eliminado con éxito")
-            return matriz
-        
-    print("Estudiante no fue encontrado")
+        for indice in reversed(indices_a_eliminar):
+            matriz.pop(indice) #La función pop eliminar los datos de la matriz que se encuentra en el ID ingresado
+
+        if encontrado == 1:
+            print("El estudiante fue eliminado con éxito.")
+            bandera = 1
+        else:
+            print("Estudiante no fue encontrado")
+
     return matriz

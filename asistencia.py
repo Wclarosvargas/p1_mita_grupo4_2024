@@ -85,76 +85,110 @@ def actualizar_asistencia(matriz_asistencia, matriz_cursos,matriz_estudiantes):
     '''
     Actualiza el estado de una entrada de asistencia existente.
     '''
-    print("Ingrese el ID de la asitencia que desea actualizar:")
-    id_asistencia = int(input().strip())
 
-    #Busca la asistencia por su ID
-    for asistencia in range(len(matriz_asistencia)):
-        if matriz_asistencia[asistencia][0] == id_asistencia:
-            print("Asistencia encontrada.")
+    bandera = 0
+    while bandera == 0:
+
+        print("Ingrese el ID de la asitencia que desea actualizar:")
+        id_asistencia = int(input().strip())
+
+        encontrado = 0
+        #Busca la asistencia por su ID
+        for asistencia in range(len(matriz_asistencia)):
+            if matriz_asistencia[asistencia][0] == id_asistencia:
+                encontrado = 1
+                print("Asistencia encontrada.")
         
 
-            id_curso_valido = 0
-            while id_curso_valido == 0:
-                print("Ingrese el ID del curso:")
-                id_curso = int(input().strip())
-                if validar_id_curso(matriz_cursos,id_curso):
-                    id_curso_valido = 1
-                else:
-                    print("ID del curso no válido. Por favor, ingrese un ID de curso válido.")
+                id_curso_valido = 0
+                while id_curso_valido == 0:
+                    print("Ingrese el ID del curso:")
+                    id_curso = int(input().strip())
+                    if validar_id_curso(matriz_cursos,id_curso):
+                        id_curso_valido = 1
+                    else:
+                        print("ID del curso no válido. Por favor, ingrese un ID de curso válido.")
 
+                #Validación del ID del estudiante
+                id_estudiante_valido = 0
+                while id_estudiante_valido == 0:
+                    print("Ingrese el ID del estudiante:")
+                    id_estudiante = int(input().strip())
+                    if validar_id_estudiante(matriz_estudiantes, id_estudiante):
+                        id_estudiante_valido = 1
+                    else:
+                        print("ID del estudiante no válido. Por favor, ingrese un ID de estudiante válido.")
 
-            id_estudiante_valido = 0
-            while id_estudiante_valido == 0:
-                print("Ingrese el ID del estudiante:")
-                id_estudiante = int(input().strip())
-                if validar_id_estudiante(matriz_estudiantes, id_estudiante):
-                    id_estudiante_valido = 1
-                else:
-                    print("ID del estudiante no válido. Por favor, ingrese un ID de estudiante válido.")
+                #Validación del estado
+                estado_valido = 0
+                while estado_valido == 0:
+                    print("Ingrese el estado (presente/ausente):")
+                    estado = input().strip().lower()
+                    if validar_estado(estado):
+                        estado_valido = 1
+                    else:
+                        print("Estado inválido. Debe ser 'presente' o 'ausente'.")
 
+                #Validación de la fecha
+                fecha_valida = 0
+                while fecha_valida == 0:
+                    print("Ingrese la fecha (formato DD-MM-YYYY):")
+                    fecha = input().strip()
+                    if validar_fecha(fecha):
+                        fecha_valida = 1
+                    else:
+                        print("Fecha inválida. Por favor, ingrese una fecha con formato 'DD-MM-YYYY'.")
 
-            estado_valido = 0
-            while estado_valido == 0:
-                print("Ingrese el estado (presente/ausente):")
-                estado = input().strip().lower()
-                if validar_estado(estado):
-                    estado_valido = 1
-                else:
-                    print("Estado inválido. Debe ser 'presente' o 'ausente'.")
-
-
-            fecha_valida = 0
-            while fecha_valida == 0:
-                print("Ingrese la fecha (formato DD-MM-YYYY):")
-                fecha = input().strip()
-                if validar_fecha(fecha):
-                    fecha_valida = 1
-                else:
-                    print("Fecha inválida. Por favor, ingrese una fecha con formato 'DD-MM-YYYY'.")
-
-            #Actualización de datos
-            matriz_asistencia[asistencia] = [id_asistencia,id_curso,id_estudiante, estado, fecha]
-            print("Los datos de la asistencia fueron actualizados exitosamente.")
-            return
+                #Actualización de datos
+                matriz_asistencia[asistencia] = [id_asistencia,id_curso,id_estudiante, estado, fecha]
+                print("Los datos de la asistencia fueron actualizados exitosamente.")
+                return
         
-    print("ID de la asistencia no encontrada")  
+        #Mensaje si no encontró el ID
+        if encontrado == 0:
+            print("ID de la asistencia no encontrada. Por favor, intente nuevamente.") 
+
+
 
 def eliminar_asistencia(matriz_asistencia):
     '''
     Elimina una entrada de asistencia existente por medio de su ID.
     '''
+    bandera = 0
+    while bandera == 0:
+        print("Ingrese el ID de la asistencia que desea eliminar:")
+        id_asistencia = int(input().strip())
+        encontrado = 0
+        indices_a_eliminar = []
 
-    print("Ingrese el ID de la asistencia que desea eliminar:")
-    id_asistencia = int(input().strip())
+        #Busca el estudiante por ID
+        for asistencia in range(len(matriz_asistencia)):
+            if matriz_asistencia[asistencia][0] == id_asistencia:
+                indices_a_eliminar.append(asistencia)
+                encontrado = 1
+        
+        if encontrado == 1:
+            #Elimina los índices encontrados
+            for indice in reversed(indices_a_eliminar):
+                matriz_asistencia.pop(indice)
 
-    asistencia_encontrada = 0
-    for i in range(len(matriz_asistencia)):
-        if matriz_asistencia[i][0] == id_asistencia:
-            matriz_asistencia.pop(i)
-            asistencia_encontrada = 1
-            print("Registro de asistencia eliminado con éxito.")
-            return
+            print("La asistencia fue eliminada con éxito.")
+            bandera = 1
+        else:
+            print("El registro de asistencia no encontrado.")
+    
+    return matriz_asistencia
+
+
+
+
+
+
+
+
+
+#Pruebas
+
 """
 def mostrar_menu():
 
