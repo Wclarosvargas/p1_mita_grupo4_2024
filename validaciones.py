@@ -3,11 +3,11 @@ import re
 
 def validadr_id_unico(matriz,id):
     """
-    Verifica si el ID del estudiante ya existe en la matriz.
+    Verifica si el ID ya existe en la matriz.
     """
     
-    for estudiante in matriz:
-        if estudiante[0] == id:
+    for item in matriz:
+        if item[0] == id:
             return 0 # ID ya existe
     return 1 #ID es único
     
@@ -20,7 +20,7 @@ def validar_promedio(promedio):
 
 
 #Validaciones de la matriz clase
-
+"""
 def validar_id_unico_clase(matriz,id):
     '''
     Verifica si el Id de la clase ya existe en la matriz clase
@@ -29,7 +29,7 @@ def validar_id_unico_clase(matriz,id):
         if clase[0] == id:
             return 0 #ID ya existe
     return 1 # Id es único
-
+"""
 
 def validar_horario(horario):
     """
@@ -54,7 +54,7 @@ def validar_fecha(fecha):
     Verifica si la fecha está en el formato 'DD-MM-YYYY' mediante el uso de expresiones regulares.
     """
     # Expresión regular para verificar el formato de fecha
-    patron = r'^\d{2}-\d{2}-\d{4}$'
+    patron = r'^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$'
     if re.match(patron, fecha):
         # La fecha se encuentra en el formato correcto
         return 1
@@ -64,7 +64,7 @@ def validar_fecha(fecha):
     
 
 #funciones abocados a validaciones para la matriz asistencias
-
+"""
 def validar_id_unico_asistencia(matriz_asistencia,id_asistencia):
     '''
     Verifica si el ID  de asistencia no se encuentra repetido
@@ -73,6 +73,7 @@ def validar_id_unico_asistencia(matriz_asistencia,id_asistencia):
         if asistencia[0] == id_asistencia:
             return 0 # ID ya existe 
     return 1 # ID único
+"""
 
 def validar_id_curso(matriz_curso,id_curso):
     '''

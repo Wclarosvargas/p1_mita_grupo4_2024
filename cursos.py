@@ -1,4 +1,4 @@
-from validaciones import validar_id_unico_clase, validar_horario, validar_id_profesor, validar_fecha
+from validaciones import validadr_id_unico, validar_horario, validar_id_profesor, validar_fecha
 
 """
 cursos = [
@@ -23,14 +23,16 @@ profesores = [
 
 def crear_clase(matriz):
     '''
-    Se encargara del ingreso de datos de la clase
+    Permite al usuario ingresar y validar los datos de una nueva clase para agregarla a la matriz.
+    Solicita un ID único, el ID del profesor, el horario y la fecha, asegurando de que sean válidos.
+    Si todos los datos son correctos, se añade la nueva clase a la matriz y se muestra un mesaje de éxito.
     '''
 
     id_valido = 0
     while id_valido == 0:
         print("Ingrese el ID de la clase:")
         id = int(input())
-        if validar_id_unico_clase(matriz,id):
+        if validadr_id_unico(matriz,id):
             id_valido = 1
         else:
             print("El ID de la clase ya existee, Por favor, ingrese un ID diferente.")
@@ -66,8 +68,11 @@ def crear_clase(matriz):
 
 def mostrar_curso(matriz):
     '''
-    Pos: está funcion se encargara de mostrar la matriz de cursos
+    Pos: está funcion se encargara de mostrar la matriz de cursos en formato tabular.
+    Imprime los encabezados y los datos de cada curso, incluyendo ID, ID del profesor, fecha y horario.
     '''
+    # Crea una lista 'curso' con ID del curso, ID del profesor,
+    # y fechas y horarios truncados a 13 caracteres de 'matriz'.
     curso = [[id,id_profesor,fecha[:13],horario[:13]] for id,id_profesor,fecha,horario in matriz]
 
     #Impresión de encabezados
@@ -84,77 +89,102 @@ def actualizar_curso(matriz):
     '''
     Actualiza los datos de la matríz curso mediante el ingreso de los datos
     Se espera que sean modificados id_curso, id_profesor, fecha y horario
+    Busca el curso por su ID y, si lo encuentra solicita y valida los nuevos datos previo a actualizarlos.
     '''
-    print("Ingrese el ID del curso que desea actualizar:")
-    id_curso = int(input())
+    bandera = 0
+    while bandera == 0:
+        print("Ingrese el ID del curso que desea actualizar:")
+        id_curso = int(input())
 
-    #Busca el curso por su ID
-    for curso in range(len(matriz)):
-        if matriz[curso][0] == id_curso:
-            print("Curso encontrado.")
+        #Busca el curso por su ID
+        econtrado = 0
+        for curso in range(len(matriz)):
+            if matriz[curso][0] == id_curso:
+                print("Curso encontrado.")
+                encontrado = 1
 
             
 
-            #Solicita el nuevo ID del profesor
-            flag = 0
-            while flag == 0:
-                print("Ingrese el nuevo ID del profesor:")
-                id_profesor = int(input())
+                #Solicita el nuevo ID del profesor
+                flag = 0
+                while flag == 0:
+                    print("Ingrese el nuevo ID del profesor:")
+                    id_profesor = int(input())
 
-                if validar_id_profesor(profesores,id_profesor) == 1:
-                    flag = 1
-                else:
-                    print("ID del profesor no válido. Por favor, ingrese un ID de profesor válido.")
+                    if validar_id_profesor(profesores,id_profesor) == 1:
+                        flag = 1
+                    else:
+                        print("ID del profesor no válido. Por favor, ingrese un ID de profesor válido.")
             
 
-            #Solicita la nueva fecha
-            flag = 0
-            while flag == 0:
-                print("Ingrese la nueva fecha (formato DD-MM-YYYY):")
-                fecha = input()
+                #Solicita la nueva fecha
+                flag = 0
+                while flag == 0:
+                        print("Ingrese la nueva fecha (formato DD-MM-YYYY):")
+                        fecha = input()
 
-            #Valida la fecha ingresada
-                if validar_fecha(fecha) == 1:
-                    flag = 1
-                else:
-                    print("Fecha inválida. Por favor, ingresar una fecha con formato 'DD-MM-YYYY'.")
+                        #Valida la fecha ingresada
+                        if validar_fecha(fecha) == 1:
+                            flag = 1
+                        else:
+                            print("Fecha inválida. Por favor, ingresar una fecha con formato 'DD-MM-YYYY'.")
                 
             
-            #Solicitar el nuevo horario
-            flag = 0
-            while flag == 0:
-                print("Ingrese el nuevo horario (formato HH:MM-HH:MM)")
-                horario = input()
+                #Solicitar el nuevo horario
+                flag = 0
+                while flag == 0:
+                    print("Ingrese el nuevo horario (formato HH:MM-HH:MM)")
+                    horario = input()
 
-            #Validar la variable horario
-                if validar_horario(horario) == 1:
-                    flag = 1
-                else:
-                    print("Horario inválido. Por favor, ingrese un horario válido en formato 'HH:MM-HH:MM'.")
+                    #Validar la variable horario
+                    if validar_horario(horario) == 1:
+                        flag = 1
+                    else:
+                        print("Horario inválido. Por favor, ingrese un horario válido en formato 'HH:MM-HH:MM'.")
 
-            #Actualización de los datos
-            matriz[curso] = [id_curso, id_profesor, fecha, horario]
-            print("Los datos del curso fueron actualizados exitosamente.")
-            return 
-        
-    print("ID del curso no encontrado.")    
+                #Actualización de los datos
+                matriz[curso] = [id_curso, id_profesor, fecha, horario]
+                print("Los datos del curso fueron actualizados exitosamente.")
+                bandera = 1
+                return 
+        if econtrado == 0:
+            print("ID del curso no encontrado.")    
 
 #Se definio la función eliminar del CRUD
 def eliminar_curso(matriz):
     '''
-    Tomara el id del curso y eliminara todos los elementos pertenecientes a ese id
-    '''            
-    print("Ingrese el ID del curso que desea eliminar:") 
-    id = int(input())       
+    Elimina el curso de la matriz según el ID solicitado por el usuario.
+    Busca el curso por su ID y, si lo encuentra, lo elimina y muestra un mensaje de éxito.
+    Si el ID no se encuentra, se le informa al usuario que el curso no fue encontrado.
+    '''
+    bandera = 0  # Inicializa la bandera como 0 (no encontrado)
 
-    #Busca el estudiante por ID
-    for curso in range(len(matriz)):
-        if matriz[curso][0] == id:
-            matriz.pop(curso) #La función pop eliminara los datos de la matríz que se encuentra en el ID ingresado
+    while bandera == 0:  # El bucle continúa mientras la bandera sea 0      
+        print("Ingrese el ID del curso que desea eliminar:") 
+        id = int(input().strip())  # Captura el ID ingresado por el usuario
+
+        encontrado = 0  # Inicializa la bandera local como 0 (no encontrado)
+        indices_a_eliminar = []  # Lista para almacenar los índices de los cursos a eliminar
+
+        # Busca el curso por ID
+        for curso in range(len(matriz)):
+            if matriz[curso][0] == id:
+                indices_a_eliminar.append(curso)  # Guarda el índice del curso encontrado
+                encontrado = 1  # Cambia la bandera local a 1 (encontrado)
+
+        # Elimina los cursos encontrados
+        for indice in reversed(indices_a_eliminar):  # Recorre en reversa para evitar problemas de índice
+            matriz.pop(indice)
+        
+        if encontrado == 1:
             print("El curso fue eliminado con éxito")
-            return matriz
-    print("Curso no fue encontrado. Por favor ingrese nuevamanente el ID del curso a buscar")   
-    return matriz 
+            bandera = 1  # Cambia la bandera principal a 1 para salir del bucle
+        else:
+            # Si no se encontró, informa al usuario y el bucle se repetirá.
+            print("Curso no fue encontrado. Por favor ingrese nuevamente el ID del curso a buscar.")
+
+    return matriz  # Retorna la matriz actualizada
+
 
 
 """
