@@ -1,15 +1,21 @@
 import re
 
 
-def validadr_id_unico(matriz,id):
+def validadr_id_unico(matriz,identificador):
     """
     Verifica si el ID ya existe en la matriz.
     """
     
     for item in matriz:
-        if item[0] == id:
+        if item[0] == identificador:
             return 0 # ID ya existe
     return 1 #ID es único
+
+def validar_id_estudiantes(matriz,id_estudiante):
+    for estudiante in matriz:
+        if estudiante['id'] == id_estudiante :
+            return 0
+    return 1
     
 def validar_promedio(promedio):
     """
@@ -19,23 +25,11 @@ def validar_promedio(promedio):
     return 1 if 1 <= promedio <= 10 else 0
 
 
-#Validaciones de la matriz clase
-"""
-def validar_id_unico_clase(matriz,id):
-    '''
-    Verifica si el Id de la clase ya existe en la matriz clase
-    '''
-    for clase in matriz:
-        if clase[0] == id:
-            return 0 #ID ya existe
-    return 1 # Id es único
-"""
-
 def validar_horario(horario):
     """
     Verifica si el horario está en el formato 'HH:MM-HH:MM'.
     """
-    horario_range = r"^([01]\d|2[0-3]):([0-5]\d)-([01]\d|2[0-3]):([0-5]\d)$"
+    horario_range = r'^([0-1][0-9]|2[0-3]):([0-5][0-9])-([0-1][0-9]|2[0-3]):([0-5][0-9])$'
     if re.match(horario_range, horario):
         return 1
     return 0
@@ -54,7 +48,7 @@ def validar_fecha(fecha):
     Verifica si la fecha está en el formato 'DD-MM-YYYY' mediante el uso de expresiones regulares.
     """
     # Expresión regular para verificar el formato de fecha
-    patron = r'^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$'
+    patron = r'^([012][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$'
     if re.match(patron, fecha):
         # La fecha se encuentra en el formato correcto
         return 1
@@ -62,19 +56,6 @@ def validar_fecha(fecha):
         # La fecha no se encuentra en el formato correcto
         return 0
     
-
-#funciones abocados a validaciones para la matriz asistencias
-"""
-def validar_id_unico_asistencia(matriz_asistencia,id_asistencia):
-    '''
-    Verifica si el ID  de asistencia no se encuentra repetido
-    '''
-    for asistencia in matriz_asistencia:
-        if asistencia[0] == id_asistencia:
-            return 0 # ID ya existe 
-    return 1 # ID único
-"""
-
 def validar_id_curso(matriz_curso,id_curso):
     '''
     Verifica si el ID del curso existe en la matriz de cursos.
