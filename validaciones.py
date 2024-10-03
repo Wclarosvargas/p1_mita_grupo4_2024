@@ -1,6 +1,6 @@
 import re
-
-
+#Nota:
+#Cambiar la forma de los return 1,0 por while y usando conjuntos.
 def validadr_id_unico(matriz,identificador):
     """
     Verifica si el ID ya existe en la matriz.
@@ -11,11 +11,16 @@ def validadr_id_unico(matriz,identificador):
             return 0 # ID ya existe
     return 1 #ID es único
 
-def validar_id_estudiantes(matriz,id_estudiante):
-    for estudiante in matriz:
-        if estudiante['id'] == id_estudiante :
+def validar_id_estudiantes(dic_Estudiante,id_estudiante):
+    for estudiante in dic_Estudiante:
+        if estudiante['id'] == id_estudiante:
+            print("El ID ya existe.")
             return 0
-    return 1
+    if id_estudiante>0:
+        return 1
+    else:
+        print("ID fuera de rango..")
+        return 0
     
 def validar_promedio(promedio):
     """

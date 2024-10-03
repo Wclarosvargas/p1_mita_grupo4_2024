@@ -1,20 +1,9 @@
-from estudiantes import crear, mostrar_matriz, actualizar, eliminar
+from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante
 from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso
 from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia
 
-"""
-#Datos precargados
-matriz_estudiante = [
-    [1,'ana','gomez',8.4],
-    [2,'juan','perez',4.2],
-    [3,'Luis','hernandez',6.4],
-    [4,'martin','mejia',10],
-    [5,'mirko','avalos',2.6]
-    ]
-"""
-
-#Uso de diccionarios
-matriz_estudiante = [
+#Uso de lista de Diccionarios en ESTUDIANTE
+dic_Estudiante = [
     {'id':1,'nombre':'juan','apellido':'gomez','promedio':8.4},
     {'id':2,'nombre':'ana','apellido':'perez','promedio':5.4},
     {'id':3,'nombre':'Luis','apellido':'hernandez','promedio':6.4},
@@ -42,11 +31,13 @@ def mostrar_menu():
     '''
     Muestra el menú principal del programa.
     '''
+    print("--------------------------------------- ")
     print("\nMenú Principal")
     print("1. Gestión de estudiantes")
     print("2. Gestión de Cursos")
     print("3. Gestión de asistencias")
     print("4. Salir del programa")
+    print("--------------------------------------- ")
 
 def menu_estudiantes():
     '''
@@ -63,18 +54,18 @@ def menu_estudiantes():
         opcion = input("Seleccione una opción:")
 
         if opcion == '1':
-            crear(matriz_estudiante)
+            crearEstudiante(dic_Estudiante)
         elif opcion == '2':
-            if len(matriz_estudiante) == 0:
+            if len(dic_Estudiante) == 0:
                 print("No hay estudiantes registrados.")
             else:
-                mostrar_matriz(matriz_estudiante)
+                mostrarEstudiante(dic_Estudiante)
         elif opcion == '3':
-            actualizar(matriz_estudiante)
+            actualizarEstudiante(dic_Estudiante)
         elif opcion == '4':
-            eliminar(matriz_estudiante)
+            eliminarEstudiante(dic_Estudiante)
         elif opcion == '5':
-            flag_estudiantes = 1 #Sale del menú de estudiantes
+            flag_estudiantes = 1 # flag=1 Sale del menú de estudiantes
         else:
             print("Opción no válida. Intente de nuevo.")
 
@@ -125,11 +116,11 @@ def menu_asistencia():
         opcion = input("Seleccione una opción: ")
 
         if opcion == '1':
-            crear_asistencias(matriz_asistencias,matriz_cursos,matriz_estudiante)
+            crear_asistencias(matriz_asistencias,matriz_cursos,dic_Estudiante)
         elif opcion == '2':
             mostrar_asistencia(matriz_asistencias)
         elif opcion == '3':
-            actualizar_asistencia(matriz_asistencias, matriz_cursos, matriz_estudiante)
+            actualizar_asistencia(matriz_asistencias, matriz_cursos, dic_Estudiante)
         elif opcion == '4':
             eliminar_asistencia(matriz_asistencias)
         elif opcion == '5':
