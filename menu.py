@@ -2,8 +2,7 @@ from estudiantes import crear, mostrar_matriz, actualizar, eliminar
 from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso
 from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia
 
-from validaciones import (validadr_id_unico, validar_promedio, validar_horario,validar_id_profesor, validar_fecha, validar_id_estudiante, validar_id_curso, validar_estado)
-
+"""
 #Datos precargados
 matriz_estudiante = [
     [1,'ana','gomez',8.4],
@@ -12,6 +11,16 @@ matriz_estudiante = [
     [4,'martin','mejia',10],
     [5,'mirko','avalos',2.6]
     ]
+"""
+
+#Uso de diccionarios
+matriz_estudiante = [
+    {'id':1,'nombre':'juan','apellido':'gomez','promedio':8.4},
+    {'id':2,'nombre':'ana','apellido':'perez','promedio':5.4},
+    {'id':3,'nombre':'Luis','apellido':'hernandez','promedio':6.4},
+    {'id':4,'nombre':'martin','apellido':'mejia','promedio':3.4},
+    {'id':5,'nombre':'julio','apellido':'avalos','promedio':2.4}
+]
 
 matriz_cursos = [
     [101, 14, '15-09-2025', '10:30-14:40'],
@@ -118,17 +127,7 @@ def menu_asistencia():
         if opcion == '1':
             crear_asistencias(matriz_asistencias,matriz_cursos,matriz_estudiante)
         elif opcion == '2':
-            if len(matriz_asistencias) == 0:
-                print("No hay registros de asistencia.")
-            else:
-                # Contar asistencias presentes 
-                cantida_presentes = len(list(filter(lambda x: x[3] == 'presente', matriz_asistencias)))
-                print(f"\nCantidad de asistencias presentes: {cantida_presentes}")
-                #Cantidad asistencia ausente
-                cantidad_ausentes = len(list(filter(lambda x:x[3] == 'ausente', matriz_asistencias)))
-                print(f"\nCantidad de asistencias ausentes: {cantidad_ausentes}")
-                print("\n")
-                mostrar_asistencia(matriz_asistencias)
+            mostrar_asistencia(matriz_asistencias)
         elif opcion == '3':
             actualizar_asistencia(matriz_asistencias, matriz_cursos, matriz_estudiante)
         elif opcion == '4':
@@ -154,7 +153,7 @@ def main():
         elif opcion == '3':
             menu_asistencia()
         elif opcion == '4':
-            print("Saliendo del programa.....")
+            print("Saliendo del programa...")
             flag_programa = 1 #Sale del programa principal
         else:
             print("Opción no válida. Intente de nuevo.")
