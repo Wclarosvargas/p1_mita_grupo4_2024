@@ -45,20 +45,25 @@ def mostrar_matriz(matriz):
     '''
     Muestra la matríz de estudiantes en formato tabular, ordenada por promedio y ID.
     '''
-
+    # Crear una lista de estudiantes con id, nombre (hasta 10 caracteres), apellido (hasta 12 caracteres) y promedio
     estudiantes = [{'id':estudiante['id'],'nombre':estudiante['nombre'][:10],'apellido':estudiante['apellido'][:12],'promedio':estudiante['promedio']} for estudiante in matriz]
 
     #Ordena la lista de estudiantes por promedio descendente y luego por ID de forma ascendente
     estudiante_ordenados = sorted(estudiantes, key=lambda x: (-x['promedio'],x['id']))
 
+ 
+
     
     #se imprimira los encabezados
-    print(f"| {'ID':<5} | {'Nombre':<10} | {'Apellido':<10} | {'Promedio':>10}")
+    print(f"| {'ID':<5} | {'Nombre':<10} | {'Apellido':<10} | {'Promedio':<10}")
     print("-"*55) #Línea de separación de los encabezados 
+    
+    salidas = [f'| {estudiante['id']:<5} | {estudiante['nombre']:<10} | {estudiante['apellido']:<10} | {estudiante['promedio']:<10.2f} |' for estudiante in estudiante_ordenados]
 
-    #Impresión de filas de datos
-    for estudiante in estudiante_ordenados:
-        print(f"| {estudiante['id']:<5} | {estudiante['nombre']:<10} | {estudiante['apellido']:<10} | {estudiante['promedio']:>10.2f} |")
+    for salida in salidas:
+        print(salida)
+
+   
 
 #------------------------------------------------------------------------------------------------------------------------------------
      
