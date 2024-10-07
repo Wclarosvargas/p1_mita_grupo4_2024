@@ -1,26 +1,18 @@
-from estudiantes import crear, mostrar_matriz, actualizar, eliminar
+import os
+from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante
 from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso
 from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia
 
-"""
-#Datos precargados
-matriz_estudiante = [
-    [1,'ana','gomez',8.4],
-    [2,'juan','perez',4.2],
-    [3,'Luis','hernandez',6.4],
-    [4,'martin','mejia',10],
-    [5,'mirko','avalos',2.6]
-    ]
-"""
-
-#Uso de diccionarios
-matriz_estudiante = [
-    {'id':1,'nombre':'juan','apellido':'gomez','promedio':8.4},
-    {'id':2,'nombre':'ana','apellido':'perez','promedio':5.4},
+#Uso de lista de Diccionarios en ESTUDIANTE
+dic_Estudiante = [
+    {'id':1,'nombre':'Juan','apellido':'Gomez','promedio':8.4},
+    {'id':2,'nombre':'Ana','apellido':'Perez','promedio':5.4},
     {'id':3,'nombre':'Luis','apellido':'hernandez','promedio':6.4},
-    {'id':4,'nombre':'martin','apellido':'mejia','promedio':3.4},
-    {'id':5,'nombre':'julio','apellido':'avalos','promedio':2.4}
-]
+    {'id':4,'nombre':'Martin','apellido':'Mejia','promedio':3.4},
+    {'id':5,'nombre':'Jose','apellido':'Berrios','promedio':4.5},
+    {'id':6,'nombre':'Matias','apellido':'Escalera','promedio':4.5}
+    ]
+
 
 matriz_cursos = [
     [101, 14, '15-09-2025', '10:30-14:40'],
@@ -37,52 +29,69 @@ matriz_asistencias = [
     [204,105,3,'ausente', '15-06-2024'],
     [205,104,4,'ausente', '02-08-2023']
 ]
+def clear_screen(): #Funcion de la libreria os,para limpiar la pantalla de los Menús.
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def mostrar_menu():
     '''
     Muestra el menú principal del programa.
     '''
+    print("--------------------------------------- ")
     print("\nMenú Principal")
     print("1. Gestión de estudiantes")
     print("2. Gestión de Cursos")
     print("3. Gestión de asistencias")
     print("4. Salir del programa")
+    print("--------------------------------------- ")
 
+#------------------------------------------------------------------------------------------------
 def menu_estudiantes():
     '''
     Gestiona el menú de operaciones de la matriz estudiantes.
     '''
-    flag_estudiantes = 0
-    while flag_estudiantes == 0:
-        print("\nMenú de Gestión de estudiantes")
-        print("1. Agregar Estudiante")
-        print("2. Mostrar estudiante")
-        print("3. Actualizar estudiante")
-        print("4. Eliminar estudiante")
-        print("5. Volver al menú principal")
-        opcion = input("Seleccione una opción:")
+    #EXEPCIONES EN ESTUDIANTES  
+    try:
+        #clear_screen()
+        flag_estudiantes = 0
+        while flag_estudiantes == 0:
+            print("\nMenú de Gestión de estudiantes")
+            print("1. Agregar Estudiante")
+            print("2. Mostrar estudiante")
+            print("3. Actualizar estudiante")
+            print("4. Eliminar estudiante")
+            print("5. Volver al menú principal")
+            opcion = input("Seleccione una opción:")
+            try:
+                if opcion == '1':
+                    crearEstudiante(dic_Estudiante)
+                elif opcion == '2':
+                    if len(dic_Estudiante) == 0:
+                        print("No hay estudiantes registrados.")
+                    else:
+                        mostrarEstudiante(dic_Estudiante)
+                elif opcion == '3':
+                    actualizarEstudiante(dic_Estudiante)
+                elif opcion == '4':
+                    eliminarEstudiante(dic_Estudiante)
+                elif opcion == '5':
+                    flag_estudiantes = 1 # flag=1 Sale del menú de estudiantes
+                else:
+                    print("Opción no válida. Intente de nuevo.")
 
-        if opcion == '1':
-            crear(matriz_estudiante)
-        elif opcion == '2':
-            if len(matriz_estudiante) == 0:
-                print("No hay estudiantes registrados.")
-            else:
-                mostrar_matriz(matriz_estudiante)
-        elif opcion == '3':
-            actualizar(matriz_estudiante)
-        elif opcion == '4':
-            eliminar(matriz_estudiante)
-        elif opcion == '5':
-            flag_estudiantes = 1 #Sale del menú de estudiantes
-        else:
-            print("Opción no válida. Intente de nuevo.")
+            except Exception as error:
+                print(f"Error al ejecutar la opción: {error}")
 
+    except KeyboardInterrupt:
+        print("\nOperación cancelada por el usuario.")
+    except Exception as error:
+        print(f"Error inesperado del menú estudiantes: {error}")
 
+#------------------------------------------------------------------------------------------------------
 def menu_cursos():
     '''
     Gestiona el menú de operaciones de la matriz cursos.
     '''
+    clear_screen()
     flag_cursos = 0
     while flag_cursos == 0:
         print("\nMenú de Gestión de Cursos")
@@ -114,6 +123,7 @@ def menu_asistencia():
     '''
     Gestiona el menú de operaciones de la matríz asistencia.
     '''
+    clear_screen()
     flag_asistencias = 0
     while flag_asistencias == 0:
         print("\nMenú de Gestión de asistencias")
@@ -125,11 +135,11 @@ def menu_asistencia():
         opcion = input("Seleccione una opción: ")
 
         if opcion == '1':
-            crear_asistencias(matriz_asistencias,matriz_cursos,matriz_estudiante)
+            crear_asistencias(matriz_asistencias,matriz_cursos,dic_Estudiante)
         elif opcion == '2':
             mostrar_asistencia(matriz_asistencias)
         elif opcion == '3':
-            actualizar_asistencia(matriz_asistencias, matriz_cursos, matriz_estudiante)
+            actualizar_asistencia(matriz_asistencias, matriz_cursos, dic_Estudiante)
         elif opcion == '4':
             eliminar_asistencia(matriz_asistencias)
         elif opcion == '5':
@@ -143,6 +153,7 @@ def main():
     '''
     flag_programa = 0
     while flag_programa == 0:
+        #clear_screen() #Actualizo la pantalla
         mostrar_menu()
         opcion = input("Seleccione una opción: ")
 
