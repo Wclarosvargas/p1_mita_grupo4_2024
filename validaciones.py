@@ -14,7 +14,6 @@ def validadr_id_unico(matriz,identificador):
 def validar_id_estudiantes(dic_Estudiante,id_estudiante):
     for estudiante in dic_Estudiante:
         if estudiante['id'] == id_estudiante:
-            print("El ID ya existe.")
             return 0
     if id_estudiante>0:
         return 1
