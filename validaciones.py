@@ -84,5 +84,3 @@ def validar_estado(estado):
     Valida que el estado del estudiante sea 'Presente' o 'Ausente'.
     '''
     return estado in {'presente', 'ausente'}
-
-def asdas
