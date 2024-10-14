@@ -85,3 +85,5 @@ def validar_estado(estado):
     '''
     return estado in {'presente', 'ausente'}
 
+def cambios (r):
+    sad
