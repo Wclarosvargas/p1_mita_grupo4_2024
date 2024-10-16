@@ -17,6 +17,10 @@ def validar_id_estudiantes(dic_Estudiante,id_estudiante):
         print('El ID ya existe.')
         return 0
     if id_estudiante > 0:
+        for estudiante in dic_Estudiante:
+            if estudiante['id'] == id_estudiante:
+                return 0
+    if id_estudiante>0:
         return 1
     else:
         print('ID fuera de rango.')
@@ -39,12 +43,11 @@ def validar_horario(horario):
         return 1
     return 0
 
-def validar_id_profesor(matriz,id):
+def validar_id_profesor(conjunto,id_profesor):
     '''
     Verifica si el id del profesor existe
     '''
-    
-    if id in matriz:
+    if id_profesor in conjunto:
         return 1
     else:
         return 0

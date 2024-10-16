@@ -6,6 +6,7 @@ def crearEstudiante(dic_Estudiante):
     Solicita al usuario el ID, nombre, apellido y promedio del estudiante,
     valida los datos y los añade a la matríz si son correctos
     '''
+
     try:#Uso de try-except
         id_valido = 0
         while id_valido == 0:
@@ -29,21 +30,20 @@ def crearEstudiante(dic_Estudiante):
                 promedio_valido = 1
             else:
                 print("El promedio debe estar entre 1 y 10. Por favor, ingrese un promedio válido")
-
         #Alta de un nuevo estudiante.
         nuevo_Estudiante = {
             'id':id, 'nombre':nombre.capitalize(), 'apellido':apellido.capitalize(),'promedio':promedio
         }
 
-        print("Estudiante fue agregado con exito")
+        print("¡Estudiante fue agregado con exito!")
         dic_Estudiante.append(nuevo_Estudiante)
 
-    except ValueError:#Excepcion cuando se espera un valor numerico
-        raise ValueError("Se esperaba un Valor NUMERICO")
-    except Exception as error: #Excepcion general
-        raise Exception(f"Error inesperado: {error}") 
+    except ValueError as error:#Excepcion cuando se espera un valor numerico
+        raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
+    
+    except Exception: #Excepcion general
+        raise Exception(f"Error inesperado..")
     #Relanzamos con Raise ambos casos hacia modulo menú
-
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,8 +67,10 @@ def mostrarEstudiante(dic_estudiantes):
         for estudiante in estudiante_ordenados:
             print(f"| {estudiante['id']:<5} | {estudiante['nombre']:<10} | {estudiante['apellido']:<10} | {estudiante['promedio']:>10.2f} |")
     
-    except Exception as error:
-        raise Exception(f"Error al mostrar estudiantes: {error}")
+    except KeyError as error:
+        raise KeyError(f"Se esperaba la clave: {error} en uno de los diccionarios de estudiantes")
+    except Exception:
+        raise Exception(f"Error Inesperado al mostrar estudiantes")
 #------------------------------------------------------------------------------------------------------------------------------------
      
 def actualizarEstudiante(dic_estudiantes):
@@ -113,9 +115,9 @@ def actualizarEstudiante(dic_estudiantes):
             print('Estudiante no fue encontrado. Intente nuevamente.')
 
     except ValueError as error:
-        raise ValueError(f"Error en la entrada: {error}")
-    except Exception as error:
-        raise Exception(f"Error inesperado: {error}")
+        raise ValueError(f"Se esperaba un valor numerico , detalles: {error}")
+    except Exception:
+        raise Exception("Error inesperado")
     #Relanzamos con Raise ambos casos hacia modulo menu
             
 
@@ -140,8 +142,9 @@ def eliminarEstudiante(dic_Estudiante):
                     eliminar = 1
                     return dic_Estudiante
             print('Estudiante no fue encontrado. Intente nuevamente.')
-    except ValueError as error:
-        raise ValueError(f"Error en la entrada: {error}")
-    except Exception as error:
-        raise Exception(f"Error inesperado: {error}")
+    except ValueError as err:
+        raise ValueError(f"Se esperaba unvalor numerico, detalles: {err}")
+    except Exception:
+        raise Exception(f"Error inesperado")
     #Relanzamos ambas excepciones con raise hacia modulo menu
+    
