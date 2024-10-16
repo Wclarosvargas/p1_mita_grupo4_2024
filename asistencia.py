@@ -30,10 +30,11 @@ def crear_asistencias(matriz_asitencia, matriz_cursos, matriz_estudiantes):
     while id_estudiante_valido == 0:
         print("Ingrese el ID del estudiante: ")
         id_estudiante = int(input().strip())
-        if validar_id_estudiantes(matriz_estudiantes, id_estudiante):
+        if validar_id_estudiantes(matriz_estudiantes, id_estudiante) == 1:
             id_estudiante_valido = 1
         else:
             print("El ID del estudiante no es válido. Por favor, ingrese un ID de estudiante válido. ")
+
 
 
     estado_valido = 0
