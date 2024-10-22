@@ -9,9 +9,10 @@ def validadr_id_unico(matriz,identificador):
     return 0 if identificador in ids_existentes else 1
 
 
-    
-
 def validar_id_estudiantes(dic_Estudiante,id_estudiante):
+    '''
+    Verfica si el ID ya existe en la matriz mediando la busqueda por medio de su keys
+    '''
     ids_exitentes = {estudiante['id'] for estudiante in dic_Estudiante}
     if id_estudiante in ids_exitentes:
         print('El ID ya existe.')

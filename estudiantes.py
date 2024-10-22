@@ -41,8 +41,8 @@ def crearEstudiante(dic_Estudiante):
     except ValueError as error:#Excepcion cuando se espera un valor numerico
         raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
     
-    except Exception: #Excepcion general
-        raise Exception(f"Error inesperado..")
+    except Exception as e: #Excepcion general
+        raise Exception(f"Error inesperado..detalles: {e}")
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 #----------------------------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 import os
 from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante
-from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso
+from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso, cargar_cursos, guardar_cursos
 from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia
 
 #Uso de lista de Diccionarios en ESTUDIANTE
@@ -14,13 +14,13 @@ dic_Estudiante = [
     ]
 
 #Uso de matriz en Cursos.
-matriz_cursos = [
+"""matriz_cursos = [
     [101, 14,'Matematica Discreta', '15-09-2025', '10:30-14:40'],
     [102, 25,'Programacion I', '16-04-2022', '08:20-12:40'],
     [103, 36,'Algebra', '14-01-2024', '14:30-18:00'],
     [104, 62,'Teoria de Sistemas', '25-10-2024','18:30-22:00'],
     [105, 96,'Inteligencia Artificial', '28-07-2024', '14:30-18:40']
-]
+]"""
 
 matriz_asistencias = [
     [201, 101, 1, 'presente', '16-04-2024'],
@@ -108,6 +108,7 @@ def menu_cursos():
     #EXEPCIONES EN CURSOS
     try:
         clear_screen()
+        matriz_cursos = cargar_cursos('cursos.txt', 'r')
         flag_cursos = 0
         while flag_cursos == 0:
             print("\nMenú de Gestión de Cursos")
@@ -125,13 +126,14 @@ def menu_cursos():
                         if len(matriz_cursos) == 0:
                             print("No hay cursos registrados.")
                         else:
-                            mostrar_curso(matriz_cursos)
+                            mostrar_curso('cursos.txt', 'r')
                     elif opcion == '3':
                         actualizar_curso(matriz_cursos)
                     elif opcion == '4':
                         eliminar_curso(matriz_cursos)
                     elif opcion == '5':
                         flag_cursos = 1 #Sale del menú de cursos
+                        guardar_cursos(matriz_cursos, 'cursos.txt', 'w')
                     else:
                         print("Opción no válida. Intente de nuevo")
                     break
@@ -177,7 +179,7 @@ def menu_asistencia():
                     elif opcion == '2':
                         mostrar_asistencia(matriz_asistencias)
                     elif opcion == '3':
-                        actualizar_asistencia(matriz_asistencias, dic_Estudiante)
+                        actualizar_asistencia(matriz_asistencias,matriz_cursos, dic_Estudiante)
                     elif opcion == '4':
                         eliminar_asistencia(matriz_asistencias)
                     elif opcion == '5':

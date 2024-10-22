@@ -1,5 +1,5 @@
 from validaciones import validadr_id_unico, validar_estado, validar_fecha,validar_horario,validar_id_curso,validar_id_estudiantes,validar_id_profesor,validar_promedio
-from menu import matriz_cursos, matriz_asistencias
+from menu import matriz_cursos
 
 def test_id_curso():
     #prueba para un id existente
@@ -18,4 +18,4 @@ def test_validar_estado():
     assert resultado is True
 
     resultado = validar_estado('otro')
-    assert resultado is False
+    assert resultado is False 
