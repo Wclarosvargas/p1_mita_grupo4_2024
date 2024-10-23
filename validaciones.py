@@ -1,21 +1,30 @@
 import re
-
-
+#Nota:
+#Cambiar la forma de los return 1,0 por while y usando conjuntos.
 def validadr_id_unico(matriz,identificador):
     """
     Verifica si el ID ya existe en la matriz.
     """
-    
-    for item in matriz:
-        if item[0] == identificador:
-            return 0 # ID ya existe
-    return 1 #ID es único
+    ids_existentes = {item[0] for item in matriz}
+    return 0 if identificador in ids_existentes else 1
 
-def validar_id_estudiantes(matriz,id_estudiante):
-    for estudiante in matriz:
-        if estudiante['id'] == id_estudiante :
-            return 0
-    return 1
+
+    
+
+def validar_id_estudiantes(dic_Estudiante,id_estudiante):
+    ids_exitentes = {estudiante['id'] for estudiante in dic_Estudiante}
+    if id_estudiante in ids_exitentes:
+        print('El ID ya existe.')
+        return 0
+    if id_estudiante > 0:
+        for estudiante in dic_Estudiante:
+            if estudiante['id'] == id_estudiante:
+                return 0
+    if id_estudiante>0:
+        return 1
+    else:
+        print('ID fuera de rango.')
+        return 0
     
 def validar_promedio(promedio):
     """
@@ -34,14 +43,14 @@ def validar_horario(horario):
         return 1
     return 0
 
-def validar_id_profesor(matriz,id):
+def validar_id_profesor(conjunto,id_profesor):
     '''
     Verifica si el id del profesor existe
     '''
-    for profe in matriz:
-        if profe[0] == id:
-            return 1
-    return 0
+    if id_profesor in conjunto:
+        return 1
+    else:
+        return 0
 
 def validar_fecha(fecha):
     """
@@ -60,19 +69,13 @@ def validar_id_curso(matriz_curso,id_curso):
     '''
     Verifica si el ID del curso existe en la matriz de cursos.
     '''
-    for curso in matriz_curso:
-        if curso[1] == id_curso:
-            return 0
-    return 1
+    ids_existentes = {curso[0] for curso in matriz_curso}
+    if id_curso in ids_existentes:
+        return 1
+    else:
+        return 0
+    
 
-def validar_id_estudiante(matriz_estudiante, id_estudiante):
-    '''
-    Verifica si el ID del estudiante existe en la matriz de estudiantes.
-    '''
-    for estudiante in matriz_estudiante:
-        if estudiante[2] == id_estudiante:
-            return 0
-    return 1
 
 def validar_estado(estado):
     '''
