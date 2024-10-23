@@ -67,7 +67,13 @@ def crear_clase(matriz):
         nuevo_curso = [id,id_profesor,materia.capitalize(),fecha,horario]
         print("Clase agregada con éxito.")
         matriz.append(nuevo_curso)
-
+        
+        #Archivo en proceso
+        """
+        archivo=open("cursos.txt",mode="w")
+        archivo.write(id,id_profesor,materia.capitalize(),fecha,horario)
+        archivo.close()
+        """
     except ValueError as error:#Excepcion cuando se espera un valor numerico
         raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
     
@@ -89,6 +95,16 @@ def mostrar_curso(matriz):
         #Impresión de encabezados
         print(f"| {'ID':<5} | {'ID_profesor':<12} | {'Materia':<15} | {'Fecha':<15} | {'Horario':<15} |")  
         print("-"*65)          
+        
+        #Uso de archivos en proceso
+        """
+        archivo=open("cursos.txt","r",encoding="UTF-8")
+        for linea in archivo:
+            id,id_profesor,materia,fecha,horario=linea
+            print(f"| {linea[0]:<5} | {linea[1]:<12} | {linea[2]:<15} | {linea[3]:<15} | {linea[4]:<15} |")
+        #curso = [[id,id_profesor,materia[:13],fecha[:13],horario[:13]] for id,id_profesor,materia,fecha,horario in archivo]
+        archivo.close()
+        """
 
         #Impresión de filas de datos
         for i in curso:
@@ -103,6 +119,9 @@ def mostrar_curso(matriz):
         # Impresión de las filas profesores
         for profesor in profesores:
             print(f"| {profesor[0]:<5} | {profesor[1]:<12} | {profesor[2]:<15} |")
+        
+        
+        
 
     except IndexError as error:
         raise IndexError(f"Datos faltantes en la Matriz, detalles: {error}")
