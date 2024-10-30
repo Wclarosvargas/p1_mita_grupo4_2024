@@ -41,8 +41,8 @@ def crearEstudiante(dic_Estudiante):
     except ValueError as error:#Excepcion cuando se espera un valor numerico
         raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
     
-    except Exception: #Excepcion general
-        raise Exception(f"Error inesperado..")
+    except Exception as e: #Excepcion general
+        raise Exception(f"Error inesperado..detalles: {e}")
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -51,6 +51,7 @@ def mostrarEstudiante(dic_estudiantes):
     '''
     Muestra la lista de Diccionarios de Estudiante en formato tabular, ordenada por promedio y ID.
     '''
+
     try:#Uso de try-except
         estudiantes = [{'id':estudiante['id'],'nombre':estudiante['nombre'][:10],'apellido':estudiante['apellido'][:12],'promedio':estudiante['promedio']} for estudiante in dic_estudiantes]
 

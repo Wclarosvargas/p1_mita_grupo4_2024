@@ -3,3 +3,6 @@ Cambios hechos:
 -Uso de excepciones en todos los modulos
 -Cambios en funcionamiento de cursos
 -cambios en funcionamiento de Asistencias
+-se aplicaron conjuntos a la matriz de profesores en los ids correspondientes
+-fixeo de los modulos a pequeños errores, se pedia parametros en el menu del submenu del módulo de asistencias.
+-se agrego el modulo de pruebas unitarias al modulo validaciones.

@@ -1,8 +1,9 @@
 #Falta desarrollar el CRUD de la matríz asistencias
 from validaciones import validar_fecha, validadr_id_unico, validar_id_estudiantes, validar_id_curso, validar_estado
 
+
 #------------------------------------------------------------------------------------------------------------------------------------
-def crear_asistencias(matriz_asistencia, dic_estudiantes):
+def crear_asistencias(matriz_asistencia,matriz_cursos ,dic_estudiantes):
     '''
     Se encargara del ingreso de datos de asistencia de cada estudiante
     Se espera que cree los datos(estado de presente/ausente)
@@ -23,7 +24,7 @@ def crear_asistencias(matriz_asistencia, dic_estudiantes):
         while id_curso_valido == 0:
             print("Ingrese el ID del curso:")
             id_curso = int(input())
-            if validar_id_curso(matriz_asistencia, id_curso)==0:
+            if validar_id_curso(matriz_cursos, id_curso):
                 print("Curso Encontrado!")
                 id_curso_valido = 1
             else:
@@ -124,7 +125,7 @@ def actualizar_asistencia(matriz_asistencia, matriz_cursos,dic_estudiantes):
                     while id_estudiante_valido == 0:
                         print("Ingrese el ID del estudiante:")
                         id_estudiante = int(input().strip())
-                        if validar_id_estudiantes(dic_estudiantes, id_estudiante):
+                        if validar_id_estudiantes(dic_estudiantes, id_estudiante)==0:
                             id_estudiante_valido = 1
                         else:
                             print("ID del estudiante no válido. Por favor, ingrese un ID de estudiante válido.")
