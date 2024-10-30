@@ -71,7 +71,7 @@ def crear_clase(matriz):
     
     except Exception: #Excepcion general
         raise Exception(f"Error inesperado..")
-    #Relanzamos con Raise ambos casos hacia modulo menú
+    #Relanzamos con Raise ambos casos hacia módulo menú
 
 #------------------------------------------------------------------------------------------------------------------------------------
 def mostrar_curso(matriz):
@@ -139,7 +139,7 @@ def actualizar_curso(matriz):
                         #Nueva materia asignada
                         print("Ingrese Nombre de la materia del curso:")
                         materia = input()
-            
+
                     #Solicita nueva fecha
                     hora = 0
                     while hora == 0:

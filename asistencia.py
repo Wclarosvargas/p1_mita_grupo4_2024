@@ -7,6 +7,7 @@ def crear_asistencias(matriz_asistencia, dic_estudiantes):
     Se encargara del ingreso de datos de asistencia de cada estudiante
     Se espera que cree los datos(estado de presente/ausente)
     '''
+    
     try:
         id_asistencia_valido = 0
         while id_asistencia_valido == 0:

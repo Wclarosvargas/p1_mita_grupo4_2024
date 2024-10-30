@@ -173,7 +173,7 @@ def menu_asistencia():
             while True:
                 try:
                     if opcion == '1':
-                        crear_asistencias(matriz_asistencias,matriz_cursos,dic_Estudiante)
+                        crear_asistencias(matriz_asistencias,dic_Estudiante)
                     elif opcion == '2':
                         mostrar_asistencia(matriz_asistencias)
                     elif opcion == '3':
