@@ -31,7 +31,7 @@ def validar_promedio(promedio):
     Verifica si el promedio está entre 1 y 10
     Devuelve 1 si el promedio es válido, 0 si no lo es.
     """
-    return 1 if 1 <= promedio <= 10 else 0
+    return 1 if 1 <= promedio <= 10 and promedio is int else 0
 
 
 def validar_horario(horario):
