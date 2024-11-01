@@ -1,4 +1,21 @@
 from validaciones import validadr_id_unico,validar_promedio,validar_id_estudiantes
+import json
+
+def cargar_arch_Estudiantes(archivo,modo):
+    try:
+        with open(archivo, modo, encoding="UTF-8") as datos:
+            estudiantes = json.load(datos)
+    except (FileNotFoundError, OSError) as error:
+        print(f"Error! {error}")
+    return estudiantes
+
+def guardar_arch_Estudiantes(dic_estudiantes,archivo,modo):
+    try:
+        with open(archivo,modo,encoding="UTF-8")as datos:
+            json.dump(dic_estudiantes,datos,ensure_ascii=False)
+
+    except OSError as error:
+        print(f"ERROR! {error}")
 
 def crearEstudiante(dic_Estudiante):
     '''

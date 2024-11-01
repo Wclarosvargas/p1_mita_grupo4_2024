@@ -28,7 +28,7 @@ def cargar_cursos(archivo, modo):
     except FileNotFoundError:
         print('Archivo de cursos no fue encontrado.')
     except Exception as e:
-        print(f'Ocurrio un error: {e}')
+        print(f'Ocurrió un error: {e}')
     return matriz_cursos
 
 def guardar_cursos(matriz_cursos, archivo,modo):

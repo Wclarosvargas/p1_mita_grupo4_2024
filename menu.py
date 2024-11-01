@@ -1,17 +1,17 @@
 import os
-from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante
+from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante,cargar_arch_Estudiantes,guardar_arch_Estudiantes
 from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso, cargar_cursos, guardar_cursos
 from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia
 
 #Uso de lista de Diccionarios en ESTUDIANTE
-dic_Estudiante = [
+"""dic_Estudiante = [
     {'id':1,'nombre':'Juan','apellido':'Gomez','promedio':8.4},
     {'id':2,'nombre':'Ana','apellido':'Perez','promedio':5.4},
     {'id':3,'nombre':'Luis','apellido':'hernandez','promedio':6.4},
     {'id':4,'nombre':'Martin','apellido':'Mejia','promedio':3.4},
     {'id':5,'nombre':'Jose','apellido':'Berrios','promedio':4.5},
     {'id':6,'nombre':'Matias','apellido':'Escalera','promedio':4.5}
-    ]
+    ]"""
 
 #Uso de matriz en Cursos.
 """matriz_cursos = [
@@ -53,6 +53,10 @@ def menu_estudiantes():
     #EXEPCIONES EN ESTUDIANTES  
     try:
         #clear_screen()
+        #uso de rutas
+        rutaEstudiantes = r"C:\Users\Usuario\Desktop\PROGRAgrupo\p1_mita_grupo4_2024\archivos\estudiantes.json"
+        dic_Estudiante = cargar_arch_Estudiantes(rutaEstudiantes, 'r')
+
         flag_estudiantes = 0
         while flag_estudiantes == 0:
             print("\nMenú de Gestión de estudiantes")
@@ -77,6 +81,7 @@ def menu_estudiantes():
                         eliminarEstudiante(dic_Estudiante)
                     elif opcion == '5':
                         flag_estudiantes = 1 # flag=1 Sale del menú de estudiantes
+                        guardar_arch_Estudiantes(dic_Estudiante,rutaEstudiantes,"w")
                     else:
                         print("Opción no válida. Intente de nuevo.")
                     break
@@ -108,7 +113,8 @@ def menu_cursos():
     #EXEPCIONES EN CURSOS
     try:
         clear_screen()
-        matriz_cursos = cargar_cursos('cursos.txt', 'r')
+        rutaCursos = r"C:\Users\Usuario\Desktop\PROGRAgrupo\p1_mita_grupo4_2024\archivos\cursos.txt"
+        matriz_cursos = cargar_cursos(rutaCursos, 'r')
         flag_cursos = 0
         while flag_cursos == 0:
             print("\nMenú de Gestión de Cursos")
@@ -126,14 +132,14 @@ def menu_cursos():
                         if len(matriz_cursos) == 0:
                             print("No hay cursos registrados.")
                         else:
-                            mostrar_curso('cursos.txt', 'r')
+                            mostrar_curso(rutaCursos, 'r')
                     elif opcion == '3':
                         actualizar_curso(matriz_cursos)
                     elif opcion == '4':
                         eliminar_curso(matriz_cursos)
                     elif opcion == '5':
                         flag_cursos = 1 #Sale del menú de cursos
-                        guardar_cursos(matriz_cursos, 'cursos.txt', 'w')
+                        guardar_cursos(matriz_cursos,rutaCursos, 'w')
                     else:
                         print("Opción no válida. Intente de nuevo")
                     break
