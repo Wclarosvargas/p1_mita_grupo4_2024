@@ -1,5 +1,9 @@
 from validaciones import validadr_id_unico,validar_promedio,validar_id_estudiantes
-
+def promedio_recursivo(Notas):
+    if 1==len(Notas):
+        return Notas[0]
+    else:
+        return Notas[0]+ promedio_recursivo(Notas[1:])
 def crearEstudiante(dic_Estudiante):
     '''
     Agrega un nuevo estudiante a la lista de Diccionarios de Estudiante.
@@ -24,8 +28,37 @@ def crearEstudiante(dic_Estudiante):
 
         promedio_valido = 0
         while promedio_valido == 0:
-            print("Ingrese el promedio del estudiante: ")
-            promedio = float(input())
+            Autorizacion=0
+            while Autorizacion==0:
+                print("Ingrese su nota de Matematica")
+                Mat=float(input())
+                if validar_promedio(Mat)==1:
+                    Autorizacion=1
+                else:
+                    print("Ingrese un numero del 1 al 10")
+            while Autorizacion==1:
+                print("Ingrese su nota de Historia")
+                Histori=float(input())
+                if validar_promedio(Histori)==1:
+                    Autorizacion=0
+                else:
+                    print("Ingrese un numero del 1 al 10")
+            while Autorizacion==0:
+                print("Ingrese su nota de Biologia")
+                Biology=float(input())
+                if validar_promedio(Biology)==1:
+                    Autorizacion=1
+                else:
+                    print("Ingrese un numero del 1 al 10")
+            while Autorizacion==1:
+                print("Ingrese su nota de Literatura")
+                Literature=float(input())
+                if validar_promedio(Literature)==1:
+                    Autorizacion=0
+                else:
+                    print("Ingrese un numero del 1 al 10")
+            Notas=[Mat,Histori,Biology,Literature]
+            promedio=int((promedio_recursivo(Notas))//4)
             if validar_promedio(promedio):
                 promedio_valido = 1
             else:
@@ -41,8 +74,8 @@ def crearEstudiante(dic_Estudiante):
     except ValueError as error:#Excepcion cuando se espera un valor numerico
         raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
     
-    except Exception: #Excepcion general
-        raise Exception(f"Error inesperado..")
+    except Exception as e: #Excepcion general
+        raise Exception(f"Error inesperado..detalles: {e}")
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 #----------------------------------------------------------------------------------------------------------------------------------

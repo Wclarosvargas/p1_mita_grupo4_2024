@@ -9,9 +9,10 @@ def validadr_id_unico(matriz,identificador):
     return 0 if identificador in ids_existentes else 1
 
 
-    
-
 def validar_id_estudiantes(dic_Estudiante,id_estudiante):
+    '''
+    Verfica si el ID ya existe en la matriz mediando la busqueda por medio de su keys
+    '''
     ids_exitentes = {estudiante['id'] for estudiante in dic_Estudiante}
     if id_estudiante in ids_exitentes:
         print('El ID ya existe.')
@@ -31,7 +32,7 @@ def validar_promedio(promedio):
     Verifica si el promedio está entre 1 y 10
     Devuelve 1 si el promedio es válido, 0 si no lo es.
     """
-    return 1 if 1 <= promedio <= 10 and promedio is int else 0
+    return 1 if 1 <= promedio <= 10 else 0
 
 
 def validar_horario(horario):

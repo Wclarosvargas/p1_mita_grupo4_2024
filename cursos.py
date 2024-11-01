@@ -17,6 +17,31 @@ profesores = [
 #transformo la matríz profesores a conjuntos de ids
 conjunto_profesores = {profesor[0] for profesor in profesores}
 
+
+def cargar_cursos(archivo, modo):
+    matriz_cursos = []
+    try:
+        with open(archivo,modo, encoding='UTF-8') as file:
+            for linea in file:
+                curso = linea.strip().split(',')
+                matriz_cursos.append([int(curso[0]), int(curso[1]), curso[2], curso[3], curso[4]])
+    except FileNotFoundError:
+        print('Archivo de cursos no fue encontrado.')
+    except Exception as e:
+        print(f'Ocurrio un error: {e}')
+    return matriz_cursos
+
+def guardar_cursos(matriz_cursos, archivo,modo):
+    try:
+        with open(archivo,modo, encoding='UTF-8') as file:
+            for curso in matriz_cursos:
+                linea = ','.join(map(str,curso))
+                file.write(linea + '\n')
+        print('Cursos guardado exitosamente.')
+    except Exception as e:
+        print(f'Ocurrió un error al guardar los cursos: {e}')
+
+
 def crear_clase(matriz):
     '''
     Permite al usuario ingresar y validar los datos de una nueva clase para agregarla a la matriz.
@@ -82,11 +107,8 @@ def crear_clase(matriz):
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 #------------------------------------------------------------------------------------------------------------------------------------
-def mostrar_curso(matriz):
-    '''
-    Pos: está funcion se encargara de mostrar la matriz de cursos en formato tabular.
-    Imprime los encabezados y los datos de cada curso, incluyendo ID, ID del profesor, fecha y horario.
-    '''
+
+def mostrar_curso(archivo,modo):
     try:
         # Crea una lista 'curso' con ID del curso, ID del profesor,materia
         # y fechas y horarios truncados a 13 caracteres de 'matriz'.
@@ -111,6 +133,24 @@ def mostrar_curso(matriz):
             print(f"| {i[0]:<5} | {i[1]:<12} | {i[2]:<15} | {i[3]:<15} | {i[4]:<15} |")
 
         print("\nVista de Profesores:")
+        mostrar = open(archivo,modo, encoding='UTF-8')
+    except OSError:
+        print('No se pudo leer el archivo cursos.txt')
+    else:
+        print('Listado de empleados')
+        print(f"{'ID':<5}{'ID_profesor':<12}{'Materia':<15}{'Fecha':<15}{'Horario':<15}")  
+        linea = mostrar.readline()
+        while linea != '':
+            curso = linea.strip().split(',')
+            if len(curso) == 5:
+                id = int(curso[0])
+                id_profesor = int(curso[1])
+                materia = curso[2][:15]
+                fecha = curso[3][:10]
+                horario = curso[4][:15]
+                print(f'{id:<5}{id_profesor:<12}{materia:<15}{fecha:<15}{horario:<15}')
+            linea = mostrar.readline()
+        print("\nLista de Profesores:")
 
         # Impresión de encabezados
         print(f"| {'ID':<5} | {'Nombre':<12} | {'Apellido':<15} |")
@@ -119,14 +159,8 @@ def mostrar_curso(matriz):
         # Impresión de las filas profesores
         for profesor in profesores:
             print(f"| {profesor[0]:<5} | {profesor[1]:<12} | {profesor[2]:<15} |")
-        
-        
-        
-
-    except IndexError as error:
-        raise IndexError(f"Datos faltantes en la Matriz, detalles: {error}")
-    except Exception :
-        raise Exception("Error al mostrar Cursos")
+    finally:
+        mostrar.close()
 
 #---------------------------------------------------------------------------------------------------------------------------------
 def actualizar_curso(matriz):
