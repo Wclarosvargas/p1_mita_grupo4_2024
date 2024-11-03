@@ -1,34 +1,8 @@
 import os
-from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante
+from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante, cargar_arch_Estudiantes,guardar_arch_Estudiantes
 from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso, cargar_cursos, guardar_cursos
-from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia
-
-#Uso de lista de Diccionarios en ESTUDIANTE
-dic_Estudiante = [
-    {'id':1,'nombre':'Juan','apellido':'Gomez','promedio':8.4},
-    {'id':2,'nombre':'Ana','apellido':'Perez','promedio':5.4},
-    {'id':3,'nombre':'Luis','apellido':'hernandez','promedio':6.4},
-    {'id':4,'nombre':'Martin','apellido':'Mejia','promedio':3.4},
-    {'id':5,'nombre':'Jose','apellido':'Berrios','promedio':4.5},
-    {'id':6,'nombre':'Matias','apellido':'Escalera','promedio':4.5}
-    ]
-
-#Uso de matriz en Cursos.
-"""matriz_cursos = [
-    [101, 14,'Matematica Discreta', '15-09-2025', '10:30-14:40'],
-    [102, 25,'Programacion I', '16-04-2022', '08:20-12:40'],
-    [103, 36,'Algebra', '14-01-2024', '14:30-18:00'],
-    [104, 62,'Teoria de Sistemas', '25-10-2024','18:30-22:00'],
-    [105, 96,'Inteligencia Artificial', '28-07-2024', '14:30-18:40']
-]"""
-
-matriz_asistencias = [
-    [201, 101, 1, 'presente', '16-04-2024'],
-    [202,102, 2,'ausente', '15-04-2024'],
-    [203,104,5,'presente', '25-11-2024'],
-    [204,105,3,'ausente', '15-06-2024'],
-    [205,104,4,'ausente', '02-08-2023']
-]
+from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia, cargar_asistencias,guardar_asistencias
+#----------------------------------------------------------------------------------------------
 def clear_screen(): #Funcion de la libreria os,para limpiar la pantalla de los Menús.
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -53,6 +27,10 @@ def menu_estudiantes():
     #EXEPCIONES EN ESTUDIANTES  
     try:
         #clear_screen()
+        #uso de rutas
+        rutaEstudiantes = "archivos/estudiantes.json"
+        dic_Estudiante = cargar_arch_Estudiantes(rutaEstudiantes, 'r')
+
         flag_estudiantes = 0
         while flag_estudiantes == 0:
             print("\nMenú de Gestión de estudiantes")
@@ -77,6 +55,7 @@ def menu_estudiantes():
                         eliminarEstudiante(dic_Estudiante)
                     elif opcion == '5':
                         flag_estudiantes = 1 # flag=1 Sale del menú de estudiantes
+                        guardar_arch_Estudiantes(dic_Estudiante,rutaEstudiantes,"w")
                     else:
                         print("Opción no válida. Intente de nuevo.")
                     break
@@ -108,7 +87,8 @@ def menu_cursos():
     #EXEPCIONES EN CURSOS
     try:
         clear_screen()
-        matriz_cursos = cargar_cursos('cursos.txt', 'r')
+        ruta_cursos = "archivos/cursos.txt"
+        matriz_cursos = cargar_cursos(ruta_cursos, 'r')
         flag_cursos = 0
         while flag_cursos == 0:
             print("\nMenú de Gestión de Cursos")
@@ -126,14 +106,14 @@ def menu_cursos():
                         if len(matriz_cursos) == 0:
                             print("No hay cursos registrados.")
                         else:
-                            mostrar_curso('cursos.txt', 'r')
+                            mostrar_curso(ruta_cursos, 'r')
                     elif opcion == '3':
                         actualizar_curso(matriz_cursos)
                     elif opcion == '4':
                         eliminar_curso(matriz_cursos)
                     elif opcion == '5':
                         flag_cursos = 1 #Sale del menú de cursos
-                        guardar_cursos(matriz_cursos, 'cursos.txt', 'w')
+                        guardar_cursos(matriz_cursos, ruta_cursos, 'w')
                     else:
                         print("Opción no válida. Intente de nuevo")
                     break
@@ -163,6 +143,7 @@ def menu_asistencia():
     #EXEPCIONES EN ASISTENCIAS
     try:
         clear_screen()
+        matriz_asistencias = cargar_asistencias('asistencias.txt', 'r')
         flag_asistencias = 0
         while flag_asistencias == 0:
             print("\nMenú de Gestión de asistencias")
@@ -184,11 +165,12 @@ def menu_asistencia():
                         eliminar_asistencia(matriz_asistencias)
                     elif opcion == '5':
                         flag_asistencias = 1 # Sale del menú de asistencias
+                        guardar_asistencias(matriz_asistencias, 'asistencias.txt', 'w')
                     else:
                         print("Opción no válida. Intente de nuevo.")
                     break
                 except ValueError as error:
-                    print(f"[Error]: {error}")
+                    print(f"Error: {error}")
                     resp= input("¿Deseas intentar de nuevo? (s/n): ")
                     if resp.lower() !="s":
                         print(f"Operacion Cancelada. Ultimo Error:{error}")

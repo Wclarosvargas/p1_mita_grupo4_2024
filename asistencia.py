@@ -3,6 +3,31 @@ from validaciones import validar_fecha, validadr_id_unico, validar_id_estudiante
 
 
 #------------------------------------------------------------------------------------------------------------------------------------
+def cargar_asistencias(archivo, modo):
+    matriz_asistencias = []
+    try:
+        with open(archivo,modo,encoding='UTF-8') as file:
+            for linea in file:
+                asistencia = linea.strip().split(',')
+                matriz_asistencias.append([int(asistencia[0]), int(asistencia[1]), int(asistencia[2]), asistencia[3], asistencia[4]])
+    except FileNotFoundError:
+        print('Archivo no fue encontrado.')
+    except Exception as error:
+        print(f'Ocurrio un error: {error}')
+    return matriz_asistencias
+
+#------------------------------------------------------------------------------------------------------------------------------------
+def guardar_asistencias(matriz_asistencias, archivo,modo):
+    try:
+        with open(archivo,modo, encoding='UTF-8') as file:
+            for asistencia in matriz_asistencias:
+                linea = ','.join(map(str,asistencia))
+                file.write(linea + '\n')
+        print('Asistencia guardado exitosamente')
+    except Exception as error:
+        print(f'Ocurrio un error al guardar los recursos: {error}')
+
+#------------------------------------------------------------------------------------------------------------------------------------
 def crear_asistencias(matriz_asistencia,matriz_cursos ,dic_estudiantes):
     '''
     Se encargara del ingreso de datos de asistencia de cada estudiante

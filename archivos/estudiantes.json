@@ -1,0 +1,26 @@
+[
+    {
+        "id": 10,
+        "nombre": "Wei",
+        "apellido": "Asds",
+        "promedio": 4.0
+    },
+    {
+        "id": 14,
+        "nombre": "Wewe",
+        "apellido": "Rere",
+        "promedio": 5.0
+    },
+    {
+        "id": 13,
+        "nombre": "Weimar",
+        "apellido": "Claros",
+        "promedio": 4.0
+    },
+    {
+        "id": 15,
+        "nombre": "Martin",
+        "apellido": "Mejia",
+        "promedio": 5
+    }
+]
