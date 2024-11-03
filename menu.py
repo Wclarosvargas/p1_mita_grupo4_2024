@@ -1,7 +1,7 @@
 import os
 from estudiantes import crearEstudiante, mostrarEstudiante, actualizarEstudiante, eliminarEstudiante, cargar_arch_Estudiantes,guardar_arch_Estudiantes
 from cursos import crear_clase, mostrar_curso, actualizar_curso, eliminar_curso, cargar_cursos, guardar_cursos
-from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia, cargar_asistencias,guardar_asistencias
+from asistencia import crear_asistencias, mostrar_asistencia, actualizar_asistencia, eliminar_asistencia, cargar_matriz_asistencias,guardar_asistencias
 #----------------------------------------------------------------------------------------------
 def clear_screen(): #Funcion de la libreria os,para limpiar la pantalla de los Menús.
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -143,7 +143,17 @@ def menu_asistencia():
     #EXEPCIONES EN ASISTENCIAS
     try:
         clear_screen()
-        matriz_asistencias = cargar_asistencias('asistencias.txt', 'r')
+        ruta_asistencia = "archivos/asistencias.txt"
+        matriz_asistencias = cargar_matriz_asistencias(ruta_asistencia, 'r')
+
+        #estudiantes
+        rutaEstudiantes = "archivos/estudiantes.json"
+        dic_Estudiante = cargar_arch_Estudiantes(rutaEstudiantes, 'r')
+
+        #cursos
+        ruta_cursos = "archivos/cursos.txt"
+        matriz_cursos = cargar_cursos(ruta_cursos, 'r')
+
         flag_asistencias = 0
         while flag_asistencias == 0:
             print("\nMenú de Gestión de asistencias")
@@ -157,6 +167,7 @@ def menu_asistencia():
                 try:
                     if opcion == '1':
                         crear_asistencias(matriz_asistencias,matriz_cursos,dic_Estudiante)
+                        guardar_asistencias(matriz_asistencias, ruta_asistencia, 'w')
                     elif opcion == '2':
                         mostrar_asistencia(matriz_asistencias)
                     elif opcion == '3':
@@ -165,7 +176,7 @@ def menu_asistencia():
                         eliminar_asistencia(matriz_asistencias)
                     elif opcion == '5':
                         flag_asistencias = 1 # Sale del menú de asistencias
-                        guardar_asistencias(matriz_asistencias, 'asistencias.txt', 'w')
+                        guardar_asistencias(matriz_asistencias, ruta_asistencia, 'w')
                     else:
                         print("Opción no válida. Intente de nuevo.")
                     break

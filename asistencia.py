@@ -1,20 +1,23 @@
 #Falta desarrollar el CRUD de la matríz asistencias
 from validaciones import validar_fecha, validadr_id_unico, validar_id_estudiantes, validar_id_curso, validar_estado
 
-
-#------------------------------------------------------------------------------------------------------------------------------------
-def cargar_asistencias(archivo, modo):
+#-----------------------------------------------------------------------------------------------------------------------------------
+def cargar_matriz_asistencias(archivo,modo):
     matriz_asistencias = []
     try:
-        with open(archivo,modo,encoding='UTF-8') as file:
-            for linea in file:
+        with open(archivo,modo, encoding="UTF-8") as file:
+            while True:
+                linea = file.readline()
+                if not linea :
+                    break
                 asistencia = linea.strip().split(',')
                 matriz_asistencias.append([int(asistencia[0]), int(asistencia[1]), int(asistencia[2]), asistencia[3], asistencia[4]])
     except FileNotFoundError:
-        print('Archivo no fue encontrado.')
-    except Exception as error:
-        print(f'Ocurrio un error: {error}')
+        print("Archivo de asistencias no fue encontrado.")
+    except Exception as e:
+        print(f"Ocurrio un error :{e}")
     return matriz_asistencias
+    
 
 #------------------------------------------------------------------------------------------------------------------------------------
 def guardar_asistencias(matriz_asistencias, archivo,modo):
@@ -89,6 +92,7 @@ def crear_asistencias(matriz_asistencia,matriz_cursos ,dic_estudiantes):
         nueva_asistencia = [id_asistencia,id_curso, id_estudiante,estado,fecha]
         matriz_asistencia.append(nueva_asistencia)
         print("Registro de asistencia agregado con éxito.")
+        print("Estado actual de matriz_asistencia:", matriz_asistencia)
 
         
     except ValueError as error:#Excepcion cuando se espera un valor numerico
@@ -109,12 +113,15 @@ def mostrar_asistencia(matriz_asistencia):
         print("-"*65)
 
         for registro in matriz_asistencia:
-            print(f"| {registro[0]:<15} | {registro[1]:<10} | {registro[2]:<15} | {registro[3]:<10} | {registro[4]:<15} |")
+            if len(registro) == 5:
+                print(f"| {registro[0]:<15} | {registro[1]:<10} | {registro[2]:<15} | {registro[3]:<10} | {registro[4]:<15} |")
+            else:
+                print("Registro incompleto",registro)
 
     except IndexError as error:
         raise IndexError(f"Datos faltantes en la Matriz, detalles: {error}")
     except Exception :
-        raise Exception("Error inesperado al mostrar Cursos")
+        raise Exception("Error inesperado al mostrar asistencias")
 #---------------------------------------------------------------------------------------------------------------------------------------
 def actualizar_asistencia(matriz_asistencia, matriz_cursos,dic_estudiantes):
     '''
