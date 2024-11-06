@@ -1,9 +1,9 @@
-from validaciones import validar_promedio,validar_id_estudiantes
+from validaciones import validar_promedio,validar_id_estudiantes,validar_nombres
 import json 
 
-#Función recursiva 
+#Función recursiva
 def promedio_recursivo(Notas):
-    if 1==len(Notas):
+    if len(Notas)==1:
         return Notas[0]
     else:
         return Notas[0]+ promedio_recursivo(Notas[1:])
@@ -42,10 +42,18 @@ def crearEstudiante(dic_Estudiante):
             else:
                 print("Por favor, ingrese un ID diferente.")
 
-        print("Ingrese el nombre del estudiante")
-        nombre = input()
-        print("Ingrese el apellido del estudiante:")
-        apellido = input()
+        bandera=False
+        while bandera==False:
+            print("Ingrese el nombre del estudiante:")
+            nombre = input()
+            print("Ingrese el apellido del estudiante:")
+            apellido = input()
+            if validar_nombres(nombre) and validar_nombres(apellido):
+                bandera=True
+            else:
+                print("Porfavor, ingrese solo letras")
+                print("Intente nuevamente..")
+
 
         promedio_valido = 0
         while promedio_valido == 0:
@@ -95,9 +103,8 @@ def crearEstudiante(dic_Estudiante):
     except ValueError as error:#Excepcion cuando se espera un valor numerico
         raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
     
-    except Exception as e: #Excepcion general
-        raise Exception(f"Error inesperado..detalles: {e}")
-    #Relanzamos con Raise ambos casos hacia modulo menú
+    except Exception: #Excepcion general
+        raise Exception("Error inesperado al crear Estudiantes")
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -124,7 +131,7 @@ def mostrarEstudiante(dic_estudiantes):
     except KeyError as error:
         raise KeyError(f"Se esperaba la clave: {error} en uno de los diccionarios de estudiantes")
     except Exception:
-        raise Exception(f"Error Inesperado al mostrar estudiantes")
+        raise Exception("Error Inesperado al mostrar estudiantes")
 #------------------------------------------------------------------------------------------------------------------------------------
      
 def actualizarEstudiante(dic_estudiantes):
@@ -171,9 +178,8 @@ def actualizarEstudiante(dic_estudiantes):
     except ValueError as error:
         raise ValueError(f"Se esperaba un valor numerico , detalles: {error}")
     except Exception:
-        raise Exception("Error inesperado")
-    #Relanzamos con Raise ambos casos hacia modulo menu
-            
+        raise Exception("Error inesperado al actualizar")
+    #Relanzamos ambos errores al Menu
 
 #---------------------------------------------------------------------------------------------------------------------------------        
 def eliminarEstudiante(dic_Estudiante):
@@ -199,6 +205,6 @@ def eliminarEstudiante(dic_Estudiante):
     except ValueError as err:
         raise ValueError(f"Se esperaba unvalor numerico, detalles: {err}")
     except Exception:
-        raise Exception(f"Error inesperado")
+        raise Exception(f"Error inesperado al eliminar")
     #Relanzamos ambas excepciones con raise hacia modulo menu
     

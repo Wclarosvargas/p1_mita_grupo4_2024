@@ -26,7 +26,13 @@ def validar_id_estudiantes(dic_Estudiante,id_estudiante):
     else:
         print('ID fuera de rango.')
         return 0
-    
+
+def validar_nombres(nombres):
+    """
+    Verifica si el parametro recibido son solo letras
+    """
+    return False if nombres.isdigit() or not nombres.isalpha() else True
+
 def validar_promedio(promedio):
     """
     Verifica si el promedio está entre 1 y 10

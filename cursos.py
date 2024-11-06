@@ -41,7 +41,6 @@ def guardar_cursos(matriz_cursos, archivo,modo):
             for curso in matriz_cursos:
                 linea = ','.join(map(str,curso))
                 file.write(linea + '\n')
-        print('Cursos guardado exitosamente.')
     except Exception as e:
         print(f'Ocurrió un error al guardar los cursos: {e}')
 

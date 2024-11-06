@@ -1,26 +1,32 @@
 [
     {
-        "id": 10,
-        "nombre": "Wei",
-        "apellido": "Asds",
-        "promedio": 4.0
+        "id": 1,
+        "nombre": "Pablo",
+        "apellido": "Nardone",
+        "promedio": 10.0
     },
     {
-        "id": 14,
-        "nombre": "Wewe",
-        "apellido": "Rere",
-        "promedio": 5.0
+        "id": 2,
+        "nombre": "Ana",
+        "apellido": "Perez",
+        "promedio": 5.4
     },
     {
-        "id": 13,
-        "nombre": "Weimar",
-        "apellido": "Claros",
-        "promedio": 4.0
+        "id": 3,
+        "nombre": "Luis",
+        "apellido": "Hernandez",
+        "promedio": 7.1
     },
     {
-        "id": 15,
-        "nombre": "Martin",
-        "apellido": "Mejia",
-        "promedio": 5
+        "id": 4,
+        "nombre": "Jose",
+        "apellido": "Berrios",
+        "promedio": 8.2
+    },
+    {
+        "id": 6,
+        "nombre": "Leonardo",
+        "apellido": "Gutierrez",
+        "promedio": 7
     }
 ]

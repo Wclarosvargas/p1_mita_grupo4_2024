@@ -26,7 +26,6 @@ def guardar_asistencias(matriz_asistencias, archivo,modo):
             for asistencia in matriz_asistencias:
                 linea = ','.join(map(str,asistencia))
                 file.write(linea + '\n')
-        print('Asistencia guardado exitosamente')
     except Exception as error:
         print(f'Ocurrio un error al guardar los recursos: {error}')
 
@@ -93,7 +92,6 @@ def crear_asistencias(matriz_asistencia,matriz_cursos ,dic_estudiantes):
         nueva_asistencia = [id_asistencia,id_curso, id_estudiante,estado,fecha]
         matriz_asistencia.append(nueva_asistencia)
         print("Registro de asistencia agregado con éxito.")
-        print("Estado actual de matriz_asistencia:", matriz_asistencia)
 
         
     except ValueError as error:#Excepcion cuando se espera un valor numerico
