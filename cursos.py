@@ -22,7 +22,10 @@ def cargar_cursos(archivo, modo):
     matriz_cursos = []
     try:
         with open(archivo,modo, encoding='UTF-8') as file:
-            for linea in file:
+            while True:
+                linea = file.readline()
+                if not linea :
+                    break
                 curso = linea.strip().split(',')
                 matriz_cursos.append([int(curso[0]), int(curso[1]), curso[2], curso[3], curso[4]])
     except FileNotFoundError:
@@ -32,6 +35,7 @@ def cargar_cursos(archivo, modo):
     return matriz_cursos
 
 def guardar_cursos(matriz_cursos, archivo,modo):
+    #Toma los valores de la matriz
     try:
         with open(archivo,modo, encoding='UTF-8') as file:
             for curso in matriz_cursos:
