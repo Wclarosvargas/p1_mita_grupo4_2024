@@ -39,3 +39,10 @@ promedio=int((promedio_recursivo(Notas))//4)
 
 print(Notas)
 print(promedio)
+  
+tupla=()
+for estudiante in asistencias:
+    if estudiante[3]=="ausente":
+        tupla+=1,
+if len(tupla)>5:
+    print("El estudante ",estudiante[2] ,"se quedo libre")

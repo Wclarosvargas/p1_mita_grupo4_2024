@@ -58,7 +58,7 @@ def crearEstudiante(dic_Estudiante):
                 else:
                     print("Ingrese un numero del 1 al 10")
             Notas=[Mat,Histori,Biology,Literature]
-            promedio=int((promedio_recursivo(Notas))//4)
+            promedio=int((promedio_recursivo(Notas))//len(Notas)-1)
             if validar_promedio(promedio):
                 promedio_valido = 1
             else:
