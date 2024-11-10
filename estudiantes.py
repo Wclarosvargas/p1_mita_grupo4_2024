@@ -3,7 +3,11 @@ import json
 
 #Función recursiva 
 def promedio_recursivo(Notas):
-    if 1==len(Notas):
+    '''
+    pre: recibe la nota de cada materia, suma todas las notas
+    pos: retorna el promedio de las notas
+    '''
+    if 1==len(Notas): #caso base de la lista
         return Notas[0]
     else:
         return Notas[0]+ promedio_recursivo(Notas[1:])
@@ -33,12 +37,12 @@ def crearEstudiante(dic_Estudiante):
     '''
 
     try:#Uso de try-except
-        id_valido = 0
-        while id_valido == 0:
+        id_valido = False
+        while id_valido == False:
             print("Ingrese el ID del estudiante:")
             id = int(input())
-            if validar_id_estudiantes(dic_Estudiante,id)==1:
-                id_valido = 1
+            if validar_id_estudiantes(dic_Estudiante,id)==True:
+                id_valido = True
             else:
                 print("Por favor, ingrese un ID diferente.")
 
@@ -79,7 +83,7 @@ def crearEstudiante(dic_Estudiante):
                 else:
                     print("Ingrese un numero del 1 al 10")
             Notas=[Mat,Histori,Biology,Literature]
-            promedio=int((promedio_recursivo(Notas))//4)
+            promedio=int((promedio_recursivo(Notas))//len(Notas)-1)
             if validar_promedio(promedio):
                 promedio_valido = 1
             else:
@@ -93,11 +97,10 @@ def crearEstudiante(dic_Estudiante):
         dic_Estudiante.append(nuevo_Estudiante)
 
     except ValueError as error:#Excepcion cuando se espera un valor numerico
-        raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
+            print(f"Se esperaba un valor Numerico. Detalles:{error}")
     
     except Exception as e: #Excepcion general
-        raise Exception(f"Error inesperado..detalles: {e}")
-    #Relanzamos con Raise ambos casos hacia modulo menú
+        print(f"Error inesperado..detalles: {e}")
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -122,9 +125,9 @@ def mostrarEstudiante(dic_estudiantes):
             print(f"| {estudiante['id']:<5} | {estudiante['nombre']:<10} | {estudiante['apellido']:<10} | {estudiante['promedio']:>10.2f} |")
     
     except KeyError as error:
-        raise KeyError(f"Se esperaba la clave: {error} en uno de los diccionarios de estudiantes")
+        print(f"Se esperaba la clave: {error} en uno de los diccionarios de estudiantes")
     except Exception:
-        raise Exception(f"Error Inesperado al mostrar estudiantes")
+        print(f"Error Inesperado al mostrar estudiantes")
 #------------------------------------------------------------------------------------------------------------------------------------
      
 def actualizarEstudiante(dic_estudiantes):
@@ -134,15 +137,15 @@ def actualizarEstudiante(dic_estudiantes):
     y actualiza su nombre, apellido y promedio si el estudiante existe.
     '''
     try:
-        renovar = 0
-        while renovar == 0:
+        renovar = False
+        while renovar == False:
             print('Ingrese el ID del estudiante que desea actualizar.')
             id_renovar = int(input().strip())
 
             #Busqueda del estudiante por medio de su ID
             for estudiante in dic_estudiantes: 
                 if estudiante['id'] == id_renovar:
-                    renovar = 1
+                    renovar = True
                     print('Estudiante encontrado')
 
                     #Actualizar nombre
@@ -151,15 +154,45 @@ def actualizarEstudiante(dic_estudiantes):
                     print('Ingrese el nuevo apellido del estudiante:')
                     estudiante['apellido'] = input().capitalize()
 
-                    #Verificar que el promedio esté entre 1 y 10
+                    #Promedio recursivo
                     promedio_valido = 0
                     while promedio_valido == 0:
-                        print('Ingrese el promedio del estudiante:')
-                        promedio = float(input())
+                        Autorizacion=0
+                        while Autorizacion==0:
+                            print("Ingrese su nota de Matematica")
+                            Mat=float(input())
+                            if validar_promedio(Mat)==1:
+                                Autorizacion=1
+                            else:
+                                print("Ingrese un numero del 1 al 10")
+                        while Autorizacion==1:
+                            print("Ingrese su nota de Historia")
+                            Histori=float(input())
+                            if validar_promedio(Histori)==1:
+                                Autorizacion=0
+                            else:
+                                print("Ingrese un numero del 1 al 10")
+                        while Autorizacion==0:
+                            print("Ingrese su nota de Biologia")
+                            Biology=float(input())
+                            if validar_promedio(Biology)==1:
+                                Autorizacion=1
+                            else:
+                                print("Ingrese un numero del 1 al 10")
+                        while Autorizacion==1:
+                            print("Ingrese su nota de Literatura")
+                            Literature=float(input())
+                            if validar_promedio(Literature)==1:
+                                Autorizacion=0
+                            else:
+                                print("Ingrese un numero del 1 al 10")
+                        Notas=[Mat,Histori,Biology,Literature]
+                        promedio=int((promedio_recursivo(Notas))//len(Notas)-1)
                         if validar_promedio(promedio):
                             promedio_valido = 1
                         else:
-                            print('El promedio debe estar entre 1 y 10. Por favor, ingresar un promedio válido.')
+                            print("El promedio debe estar entre 1 y 10. Por favor, ingrese un promedio válido")
+                    #Alta de un nuevo estudiante.
 
 
                     estudiante['promedio'] = promedio
@@ -169,10 +202,9 @@ def actualizarEstudiante(dic_estudiantes):
             print('Estudiante no fue encontrado. Intente nuevamente.')
 
     except ValueError as error:
-        raise ValueError(f"Se esperaba un valor numerico , detalles: {error}")
+        print(f"Se esperaba un valor numerico , detalles: {error}")
     except Exception:
-        raise Exception("Error inesperado")
-    #Relanzamos con Raise ambos casos hacia modulo menu
+        print("Error inesperado")
             
 
 #---------------------------------------------------------------------------------------------------------------------------------        
@@ -183,8 +215,8 @@ def eliminarEstudiante(dic_Estudiante):
     elimina si existe en el diccionario
     '''
     try:
-        eliminar = 0
-        while eliminar == 0:
+        eliminar = False
+        while eliminar == False:
             print('Ingrese el ID del estudiante que desea eliminar:')
             id_eliminar = int(input().strip())
 
@@ -193,12 +225,12 @@ def eliminarEstudiante(dic_Estudiante):
                     dic_Estudiante.pop(i)
                     print("Eliminando..")
                     print('El estudiante fue eliminado con exito!.')
-                    eliminar = 1
+                    eliminar = True
                     return dic_Estudiante
             print('Estudiante no fue encontrado. Intente nuevamente.')
     except ValueError as err:
-        raise ValueError(f"Se esperaba unvalor numerico, detalles: {err}")
+        print(f"Se esperaba unvalor numerico, detalles: {err}")
     except Exception:
-        raise Exception(f"Error inesperado")
-    #Relanzamos ambas excepciones con raise hacia modulo menu
+        print(f"Error inesperado")
+    
     

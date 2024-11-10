@@ -1,20 +1,20 @@
 [
     {
         "id": 10,
-        "nombre": "Wei",
-        "apellido": "Asds",
+        "nombre": "Martin",
+        "apellido": "Gutierrez",
         "promedio": 4.0
     },
     {
         "id": 14,
-        "nombre": "Wewe",
-        "apellido": "Rere",
+        "nombre": "Joel",
+        "apellido": "Barbona",
         "promedio": 5.0
     },
     {
         "id": 13,
-        "nombre": "Weimar",
-        "apellido": "Claros",
+        "nombre": "Nahuel",
+        "apellido": "Vera",
         "promedio": 4.0
     },
     {
@@ -22,5 +22,29 @@
         "nombre": "Martin",
         "apellido": "Mejia",
         "promedio": 5
+    },
+    {
+        "id": 20,
+        "nombre": "Martina",
+        "apellido": "Caceres",
+        "promedio": 5
+    },
+    {
+        "id": 11,
+        "nombre": "Joaco",
+        "apellido": "Clato",
+        "promedio": 3
+    },
+    {
+        "id": 22,
+        "nombre": "Pele",
+        "apellido": "Sd",
+        "promedio": 8
+    },
+    {
+        "id": 25,
+        "nombre": "Jua",
+        "apellido": "Sd",
+        "promedio": 4.0
     }
 ]

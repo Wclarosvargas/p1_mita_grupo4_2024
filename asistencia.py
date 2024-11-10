@@ -37,54 +37,54 @@ def crear_asistencias(matriz_asistencia,matriz_cursos ,dic_estudiantes):
     Se espera que cree los datos(estado de presente/ausente)
     '''
     try:
-        id_asistencia_valido = 0
-        while id_asistencia_valido == 0:
+        id_asistencia_valido = False
+        while id_asistencia_valido == False:
             print("Ingrese el ID de la asistencia:")
             id_asistencia = int(input())
 
-            if validadr_id_unico(matriz_asistencia, id_asistencia) == 1:
-                id_asistencia_valido = 1
+            if validadr_id_unico(matriz_asistencia, id_asistencia) == True:
+                id_asistencia_valido = True
             else:
                 print("El ID de la asistencia ya existe. Por favor, ingrese un ID diferente.")
 
-        id_curso_valido = 0
-        while id_curso_valido == 0:
+        id_curso_valido = False
+        while id_curso_valido == False:
             print("Ingrese el ID del curso:")
             id_curso = int(input())
             if validar_id_curso(matriz_cursos, id_curso):
                 print("Curso Encontrado!")
-                id_curso_valido = 1
+                id_curso_valido = True
             else:
                 print("ID del curso no existe. Por favor, ingrese un ID de curso válido.")
         
 
-        id_estudiante_valido = 0
-        while id_estudiante_valido == 0:
+        id_estudiante_valido = False
+        while id_estudiante_valido == False:
             print("Ingrese el ID del estudiante: ")
             id_estudiante = int(input().strip())
-            if validar_id_estudiantes(dic_estudiantes, id_estudiante)==0:
+            if validar_id_estudiantes(dic_estudiantes, id_estudiante)==False:
                 print("Estudiante encontrado!")
-                id_estudiante_valido = 1
+                id_estudiante_valido = True
             else:
                 print("El ID del estudiante no existe. Por favor, ingrese un ID de estudiante válido. ")
 
 
-        estado_valido = 0
-        while estado_valido == 0:
+        estado_valido = False
+        while estado_valido == False:
             print("Ingrese el estado (presente/ausente):")
             estado = input().strip().lower()
             if validar_estado(estado):
-                estado_valido = 1
+                estado_valido = True
             else:
                 print("Estado inválido. Debe ser 'Presente' o 'Ausente'.")
 
 
-        fecha_valida = 0
-        while fecha_valida == 0:
+        fecha_valida = False
+        while fecha_valida == False:
             print("Ingrese la fecha (Formato DD-MM-YYYY):")
             fecha = input().strip()
             if validar_fecha(fecha):
-                fecha_valida = 1
+                fecha_valida = True
             else:
                 print("Fecha inválida. Por favor, ingrese una fecha con formato 'DD-MM-YYYY'.")
 
@@ -92,14 +92,12 @@ def crear_asistencias(matriz_asistencia,matriz_cursos ,dic_estudiantes):
         nueva_asistencia = [id_asistencia,id_curso, id_estudiante,estado,fecha]
         matriz_asistencia.append(nueva_asistencia)
         print("Registro de asistencia agregado con éxito.")
-        print("Estado actual de matriz_asistencia:", matriz_asistencia)
 
-        
     except ValueError as error:#Excepcion cuando se espera un valor numerico
-        raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
+        print(f"Se esperaba un valor Numerico. Detalles:{error}")
     
     except Exception: #Excepcion general
-        raise Exception(f"Error inesperado..")
+        print(f"Error inesperado...")
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 #--------------------------------------------------------------------------------------------------------------------------------------
@@ -119,65 +117,65 @@ def mostrar_asistencia(matriz_asistencia):
                 print("Registro incompleto",registro)
 
     except IndexError as error:
-        raise IndexError(f"Datos faltantes en la Matriz, detalles: {error}")
+        print(f"Datos faltantes en la Matriz, detalles: {error}")
     except Exception :
-        raise Exception("Error inesperado al mostrar asistencias")
+        print("Error inesperado al mostrar asistencias")
 #---------------------------------------------------------------------------------------------------------------------------------------
 def actualizar_asistencia(matriz_asistencia, matriz_cursos,dic_estudiantes):
     '''
     Actualiza el estado de una entrada de asistencia existente.
     '''
     try:
-        bandera = 0
-        while bandera == 0:
+        bandera = False
+        while bandera == False:
 
             print("Ingrese el ID de la asitencia que desea actualizar:")
             id_asistencia = int(input().strip())
 
-            encontrado = 0
+            encontrado = False
             #Busca la asistencia por su ID
             for asistencia in range(len(matriz_asistencia)):
                 if matriz_asistencia[asistencia][0] == id_asistencia:
-                    encontrado = 1
+                    encontrado = True
                     print("Asistencia encontrada.")
             
 
-                    id_curso_valido = 0
-                    while id_curso_valido == 0:
+                    id_curso_valido = False
+                    while id_curso_valido == False:
                         print("Ingrese el ID del curso:")
                         id_curso = int(input().strip())
                         if validar_id_curso(matriz_cursos,id_curso):
-                            id_curso_valido = 1
+                            id_curso_valido = True
                         else:
                             print("ID del curso no válido. Por favor, ingrese un ID de curso válido.")
 
                     #Validación del ID del estudiante
-                    id_estudiante_valido = 0
-                    while id_estudiante_valido == 0:
+                    id_estudiante_valido = False
+                    while id_estudiante_valido == False:
                         print("Ingrese el ID del estudiante:")
                         id_estudiante = int(input().strip())
-                        if validar_id_estudiantes(dic_estudiantes, id_estudiante)==0:
-                            id_estudiante_valido = 1
+                        if validar_id_estudiantes(dic_estudiantes, id_estudiante)==False:
+                            id_estudiante_valido = True
                         else:
                             print("ID del estudiante no válido. Por favor, ingrese un ID de estudiante válido.")
 
                     #Validación del estado
-                    estado_valido = 0
-                    while estado_valido == 0:
+                    estado_valido = False
+                    while estado_valido == False:
                         print("Ingrese el estado (presente/ausente):")
                         estado = input().strip().lower()
                         if validar_estado(estado):
-                            estado_valido = 1
+                            estado_valido = True
                         else:
                             print("Estado inválido. Debe ser 'presente' o 'ausente'.")
 
                     #Validación de la fecha
-                    fecha_valida = 0
-                    while fecha_valida == 0:
+                    fecha_valida = False
+                    while fecha_valida == False:
                         print("Ingrese la fecha (formato DD-MM-YYYY):")
                         fecha = input().strip()
                         if validar_fecha(fecha):
-                            fecha_valida = 1
+                            fecha_valida = True
                         else:
                             print("Fecha inválida. Por favor, ingrese una fecha con formato 'DD-MM-YYYY'.")
 
@@ -187,20 +185,20 @@ def actualizar_asistencia(matriz_asistencia, matriz_cursos,dic_estudiantes):
                     return
             
             #Mensaje si no encontró el ID
-            if encontrado == 0:
+            if encontrado == False:
                 print("ID de la asistencia no encontrada. Por favor, intente nuevamente.") 
 
     except ValueError as error:#Excepcion cuando se espera un valor numerico
-        raise ValueError(f"Se esperaba un valor Numerico, detalles:{error}")
+        print(f"Se esperaba un valor Numerico, detalles:{error}")
     except Exception: #Excepcion general
-        raise Exception(f"Error inesperado.") 
+        print(f"Error inesperado...") 
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 def eliminar_asistencia(matriz_asistencia):
     try:
-        eliminar = 0
-        while eliminar == 0:
+        eliminar = False
+        while eliminar == False:
             print('Ingrese el ID de Asistencia que desea eliminar:')
             id_eliminar = int(input().strip())
 
@@ -208,18 +206,13 @@ def eliminar_asistencia(matriz_asistencia):
                 if matriz_asistencia[asistencia][0] == id_eliminar:
                     matriz_asistencia.pop(asistencia)
                     print('El registro de asistencia fue eliminado con éxito.')
-                    eliminar = 1
+                    eliminar = True
                     return matriz_asistencia
             print('El registro de asistencia no fue encontrado. Intente nuevamente.')
     except ValueError as err:
-        raise ValueError(f"Se esperaba un valor Numerico, detalles:{err}")
+        print(f"Se esperaba un valor Numerico, detalles:{err}")
     except Exception:
-        raise Exception(f"Error inesperado.")
+        print(f"Error inesperado...")
     #Relanzamos ambas excepciones con raise hacia modulo menu
-
-
-
-
-
 
 
