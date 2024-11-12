@@ -37,10 +37,14 @@ def crearEstudiante(dic_Estudiante):
         while id_valido == 0:
             print("Ingrese el ID del estudiante:")
             id = int(input())
-            if validar_id_estudiantes(dic_Estudiante,id)==1:
-                id_valido = 1
+            if id>0:
+                if validar_id_estudiantes(dic_Estudiante,id)==False:
+                    id_valido = 1
+                    print("id exelente!")
+                else:
+                    print("Por favor, ingrese un ID diferente.")
             else:
-                print("Por favor, ingrese un ID diferente.")
+                print("ID fuera de rango")
 
         bandera=False
         while bandera==False:
@@ -53,7 +57,6 @@ def crearEstudiante(dic_Estudiante):
             else:
                 print("Porfavor, ingrese solo letras")
                 print("Intente nuevamente..")
-
 
         promedio_valido = 0
         while promedio_valido == 0:
@@ -100,9 +103,10 @@ def crearEstudiante(dic_Estudiante):
         print("¡Estudiante fue agregado con exito!")
         dic_Estudiante.append(nuevo_Estudiante)
 
-    except ValueError as error:#Excepcion cuando se espera un valor numerico
-        raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
-    
+    except ValueError as error:#ej:cuando se espera un valor numerico
+        raise ValueError(f"Error de Valor, datos ingresados de forma incorrecta, detalles: {error}")
+    except TypeError as e:
+        raise TypeError(f"Tipo de dato Incorrecto en la operacion, detalles: {e}")
     except Exception: #Excepcion general
         raise Exception("Error inesperado al crear Estudiantes")
 

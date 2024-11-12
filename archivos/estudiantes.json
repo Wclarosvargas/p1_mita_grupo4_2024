@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "nombre": "Pablo",
+        "nombre": "juan",
         "apellido": "Nardone",
         "promedio": 10.0
     },
@@ -28,5 +28,11 @@
         "nombre": "Leonardo",
         "apellido": "Gutierrez",
         "promedio": 7
+    },
+    {
+        "id": 8,
+        "nombre": "Maria",
+        "apellido": "Bonzetti",
+        "promedio": 9.0
     }
 ]
