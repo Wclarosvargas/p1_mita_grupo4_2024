@@ -17,12 +17,15 @@ profesores = [
 #transformo la matríz profesores a conjuntos de ids
 conjunto_profesores = {profesor[0] for profesor in profesores}
 
-
+#---------------------------------------------------------------------------------------------------------------------------
 def cargar_cursos(archivo, modo):
     matriz_cursos = []
     try:
         with open(archivo,modo, encoding='UTF-8') as file:
-            for linea in file:
+            while True:
+                linea = file.readline()
+                if not linea :
+                    break
                 curso = linea.strip().split(',')
                 matriz_cursos.append([int(curso[0]), int(curso[1]), curso[2], curso[3], curso[4]])
     except FileNotFoundError:
@@ -32,6 +35,7 @@ def cargar_cursos(archivo, modo):
     return matriz_cursos
 
 def guardar_cursos(matriz_cursos, archivo,modo):
+    #Toma los valores de la matriz
     try:
         with open(archivo,modo, encoding='UTF-8') as file:
             for curso in matriz_cursos:
@@ -41,7 +45,7 @@ def guardar_cursos(matriz_cursos, archivo,modo):
     except Exception as e:
         print(f'Ocurrió un error al guardar los cursos: {e}')
 
-
+#---------------------------------------------------------------------------------------------------------------------
 def crear_clase(matriz):
     '''
     Permite al usuario ingresar y validar los datos de una nueva clase para agregarla a la matriz.
@@ -49,17 +53,17 @@ def crear_clase(matriz):
     Si todos los datos son correctos, se añade la nueva clase a la matriz y se muestra un mesaje de éxito.
     '''
     try:
-        id_valido = 0
-        while id_valido == 0:
+        id_valido = False
+        while id_valido == False:
             print("Ingrese el ID de la clase:")
             id = int(input())
             if validadr_id_unico(matriz,id):
                 print("Ingrese el ID del profesor:")
                 id_profesor = int(input())
 
-                if validar_id_profesor(conjunto_profesores,id_profesor) != 0:
+                if validar_id_profesor(conjunto_profesores,id_profesor) != False:
                     print("Profesor Encontrado!")
-                    id_valido=1                   
+                    id_valido=True                   
                 else:
                     print("ID del profesor no válido. Por favor, ingrese un ID de profesor válido. ")
             else:
@@ -70,21 +74,21 @@ def crear_clase(matriz):
         print("Ingrese Nombre de la materia del curso:")
         materia = input()
         
-        horario_valido = 0
-        while horario_valido == 0:
+        horario_valido = False
+        while horario_valido == False:
             print("Ingrese el horario de la clase (por ejemplo, '09:00-10:00'):")
             horario = input()
-            if validar_horario(horario) == 1:
-                horario_valido = 1
+            if validar_horario(horario) == True:
+                horario_valido = True
             else:
                 print("Horario inválido.Por favor, ingrese un horario válido.")   
 
-        fecha_valida = 0
-        while fecha_valida == 0:
+        fecha_valida = False
+        while fecha_valida == False:
             print("Ingrese la fecha de la clase (por ejemplo, '10-09-2024'):")
             fecha = input()
-            if validar_fecha(fecha) == 1:
-                fecha_valida = 1
+            if validar_fecha(fecha) == True:
+                fecha_valida = True
             else:
                 print("Fecha inválida. Por favor, ingresar una fecha con formato 'DD-MM-YYYY'.")
 
@@ -100,10 +104,10 @@ def crear_clase(matriz):
         archivo.close()
         """
     except ValueError as error:#Excepcion cuando se espera un valor numerico
-        raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
+        print(f"Se esperaba un valor Numerico. Detalles:{error}")
     
     except Exception: #Excepcion general
-        raise Exception(f"Error inesperado..")
+        print(f"Error inesperado..")
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 #------------------------------------------------------------------------------------------------------------------------------------
@@ -112,11 +116,11 @@ def mostrar_curso(archivo,modo):
     try:
         # Crea una lista 'curso' con ID del curso, ID del profesor,materia
         # y fechas y horarios truncados a 13 caracteres de 'matriz'.
-        curso = [[id,id_profesor,materia[:13],fecha[:13],horario[:13]] for id,id_profesor,materia,fecha,horario in matriz]
-        print("\nVista de Cursos:")
+        #curso = [[id,id_profesor,materia[:13],fecha[:13],horario[:13]] for id,id_profesor,materia,fecha,horario in matriz]
+        #print("\nVista de Cursos:")
         #Impresión de encabezados
-        print(f"| {'ID':<5} | {'ID_profesor':<12} | {'Materia':<15} | {'Fecha':<15} | {'Horario':<15} |")  
-        print("-"*65)          
+        #print(f"| {'ID':<5} | {'ID_profesor':<12} | {'Materia':<15} | {'Fecha':<15} | {'Horario':<15} |")  
+        #print("-"*65)          
         
         #Uso de archivos en proceso
         """
@@ -129,8 +133,8 @@ def mostrar_curso(archivo,modo):
         """
 
         #Impresión de filas de datos
-        for i in curso:
-            print(f"| {i[0]:<5} | {i[1]:<12} | {i[2]:<15} | {i[3]:<15} | {i[4]:<15} |")
+        #for i in curso:
+         #   print(f"| {i[0]:<5} | {i[1]:<12} | {i[2]:<15} | {i[3]:<15} | {i[4]:<15} |")
 
         print("\nVista de Profesores:")
         mostrar = open(archivo,modo, encoding='UTF-8')
@@ -170,8 +174,8 @@ def actualizar_curso(matriz):
     Busca el curso por su ID y, si lo encuentra solicita y valida los nuevos datos previo a actualizarlos.
     '''
     try:
-        renovar = 0
-        while renovar == 0:
+        renovar = False
+        while renovar == False:
             print('Ingrese el ID del curso que desea actualizar:')
             id_renovar = int(input().strip())
 
@@ -181,13 +185,13 @@ def actualizar_curso(matriz):
                     print('Curso encontrado')
 
                     #Solicita el nuevo ID del profesor
-                    flag = 0
-                    while flag == 0:
+                    flag = False
+                    while flag == False:
                         print('Ingrese el nuevo ID del profesor:')
                         id_profesor = int(input())
 
-                        if validar_id_profesor(conjunto_profesores,id_profesor) == 1:
-                            flag = 1
+                        if validar_id_profesor(conjunto_profesores,id_profesor) == True:
+                            flag = True
                         else:
                             print('ID del profesor no válido. Por favor, ingrese un ID de profesor válido')
 
@@ -196,26 +200,26 @@ def actualizar_curso(matriz):
                         materia = input()
             
                     #Solicita nueva fecha
-                    hora = 0
-                    while hora == 0:
+                    hora = False
+                    while hora == False:
                         print('Ingrese el nuevo horario,(formato HH:MM-HH:MM)')
                         horario = input().strip()
 
                         #Validar horario
-                        if validar_horario(horario) == 1:
-                            hora = 1
+                        if validar_horario(horario) == True:
+                            hora = True
                         else:
                             print('Horario inválido. Por favor ingrese un horario válido en formato (HH:MM-HH:MM).')
 
                     #Solicita nueva fecha
-                    fecha = 0
-                    while fecha == 0:
+                    fecha = False
+                    while fecha == False:
                         print('Ingrese la nueva fecha, formato(DD-MM-YYYY).')
                         nueva_fecha = input()
 
                         #Valida la fecha ingresada
-                        if validar_fecha(nueva_fecha) == 1:
-                            fecha = 1
+                        if validar_fecha(nueva_fecha) == True:
+                            fecha = True
                         else:
                             print('Fecha inválida. Por favor ingrese una nueva fecha con formato (DD-MM-YYYY).')
 
@@ -226,15 +230,15 @@ def actualizar_curso(matriz):
                     curso[3] = nueva_fecha #Actualiza la fecha
                     curso[4] = horario     #Actualiza el horario
                     print('Los elementos del curso fueron actualizados exitosamente.')
-                    renovar = 1
+                    renovar = True
                     return matriz
             
             print('Curso no fue encontrado. Intente nuevamente.')
 
     except ValueError as error:#Excepcion cuando se espera un valor numerico
-        raise ValueError(f"Se esperaba un valor Numerico, detalles:{error}")
+        print(f"Se esperaba un valor Numerico, detalles:{error}")
     except Exception: #Excepcion general
-        raise Exception(f"Error inesperado.") 
+        print(f"Error inesperado.") 
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 
@@ -242,8 +246,8 @@ def actualizar_curso(matriz):
 
 def eliminar_curso(matriz):
     try:
-        eliminar = 0
-        while eliminar == 0:
+        eliminar = False
+        while eliminar == False:
             print('Ingrese el ID del Curso que desea eliminar:')
             id_eliminar = int(input().strip())
 
@@ -251,12 +255,12 @@ def eliminar_curso(matriz):
                 if matriz[curso][0] == id_eliminar:
                     matriz.pop(curso)
                     print('El curso fue eliminado con éxito.')
-                    eliminar = 1
+                    eliminar = True
                     return matriz
             print('El curso no fue encontrado. Intente nuevamente.')
             
     except ValueError as err:
-        raise ValueError(f"Se esperaba un valor Numerico, detalles:{err}")
+        print(f"Se esperaba un valor Numerico, detalles:{err}")
     except Exception:
-        raise Exception(f"Error inesperado.")
+        print(f"Error inesperado.")
     #Relanzamos ambas excepciones con raise hacia modulo menu
