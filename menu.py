@@ -30,7 +30,7 @@ def menu_estudiantes(rutaEstudiantes):
     try:
         clear_screen()
 
-        flag_estudiantes = 0
+        flag_estudiantes = False
         while flag_estudiantes == False: #Controla el flujo del menu y permite navegar entre las opciones
             print("\nMenú de Gestión de estudiantes")
             print("1. Agregar Estudiante")
@@ -59,19 +59,13 @@ def menu_estudiantes(rutaEstudiantes):
                         flag_estudiantes = True # True sale del menú de estudiantes
                     else:
                         print("Opción no válida. Intente de nuevo.")
-                    
-                except ValueError as error:
-                    print(f"[Error]: {error}")
-                    resp=input("¿Deseas intentar de nuevo? (s/n): ") #Posibilidad de reingresar en caso de Excepcion
+
+                except Exception as error_estudiante: #una sola Excepcion que atrapa cualquier raise del Crud estudaintes
+                    print(f"[Error]: {error_estudiante}")
+                    resp= input("¿Deseas intentar de nuevo? (s/n): ")#Posibilidad de reingresar en caso de Excepcion
                     if resp.lower() !="s":
-                        print(f"Operacion Cancelada. Ultimo Error:{error}")
-                        banderaInterna=False  #Desactiva el bucle interno y sale hacia el Menu Estudiantes
-                except Exception as error:
-                    print(f"[Error]: {error}")
-                    resp= input("¿Deseas intentar de nuevo? (s/n): ")
-                    if resp.lower() !="s":
-                        print(f"Operacion Cancelada. Ultimo Error:{error}")
-                        banderaInterna=False
+                        print(f"Operacion Cancelada. Ultimo Error:{error_estudiante}")
+                        banderaInterna=False#Desactiva el bucle interno y sale hacia el Menu Estudiantes
                 else:
                     guardar_arch_Estudiantes(dic_Estudiante,rutaEstudiantes,"w")
                     banderaInterna=False
@@ -121,17 +115,12 @@ def menu_cursos(ruta_cursos):
                         flag_cursos = True  #Sale del menú de cursos
                     else:
                         print("Opción no válida. Intente de nuevo")
-                except ValueError as error:
+
+                except Exception as error:
                     print(f"[Error]: {error}")
                     resp= input("¿Deseas intentar de nuevo? (s/n): ")
                     if resp.lower() !="s":
                         print(f"Operacion Cancelada. Ultimo Error:{error}")
-                        banderaInterna=False  #Desactiva el bucle interno y sale hacia el Menu Cursos
-                except Exception as e:
-                    print(f"[Error]: {e}")
-                    resp= input("¿Deseas intentar de nuevo? (s/n): ")
-                    if resp.lower() !="s":
-                        print(f"Operacion Cancelada. Ultimo Error:{e}")
                         banderaInterna=False  
                 else:
                     guardar_cursos(matriz_cursos, ruta_cursos, 'w')
@@ -181,16 +170,11 @@ def menu_asistencia(rutaEstudiantes,ruta_cursos,ruta_asistencia):
                     elif opcion == '4':
                         eliminar_asistencia(matriz_asistencias)
                     elif opcion == '5':
-                        flag_asistencias = 1 # Sale del menú de asistencias
+                        flag_asistencias = True# Sale del menú de asistencias
                         
                     else:
                         print("Opción no válida. Intente de nuevo.")
-                except ValueError as error:
-                    print(f"Error: {error}")
-                    resp= input("¿Deseas intentar de nuevo? (s/n): ")
-                    if resp.lower() !="s":
-                        print(f"Operacion Cancelada. Ultimo Error:{error}")
-                        banderaInterna=False 
+
                 except Exception as error:
                     print(f"[Error]: {error}")
                     resp= input("¿Deseas intentar de nuevo? (s/n): ")
@@ -211,7 +195,7 @@ def main():
     '''
     Gestiona el flujo del programa.
     ''' 
-    #uso de rutas en TODOS LOS MODULOS
+    #uso de rutas en TODOS LOS MÓDULOS
     rutaEstudiantes = "archivos/estudiantes.json"
     ruta_cursos = "archivos/cursos.txt"
     ruta_asistencia = "archivos/asistencias.txt"

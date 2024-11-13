@@ -2,16 +2,18 @@ from validaciones import validar_id_unico, validar_horario, validar_fecha, valid
 
 # Matríz de profesores
 profesores = [
-    [14, 'Carlos', 'Pérez'],
-    [25, 'Juan', 'Nardone'],
-    [36, 'Luis', 'Martínez'],
-    [43, 'María', 'Lopez'],
-    [56, 'Ezequiel', 'Escalante'],
-    [62, 'Laura', 'Gómez'],
-    [79, 'Miguel', 'Rodríguez'],
-    [80, 'Sofía', 'Fernández'],
-    [96, 'Jorge', 'Sánchez'],
-    [107, 'Mariano', 'Eito']
+    [10, 'Carlos', 'Pérez'],
+    [14, 'Juan', 'Nardone'],
+    [16, 'Luis', 'Martínez'],
+    [18, 'María', 'Lopez'],
+    [20, 'Ezequiel', 'Escalante'],
+    [22, 'Laura', 'Gómez'],
+    [40, 'Miguel', 'Rodríguez'],
+    [42, 'Sofía', 'Fernández'],
+    [80, 'Jorge', 'Sánchez'],
+    [82, 'Maximiliano', 'Guzman'],
+    [90, 'Sergio', 'Aguilar'],
+    [92, 'Mariano', 'Eito']
 ]
 
 #transformo la matríz profesores a conjuntos de ids
@@ -108,7 +110,7 @@ def crear_curso(matriz):
         raise ValueError(f"Se esperaba un valor Numerico. Detalles:{error}")
     
     except Exception: #Excepcion general
-        raise Exception(f"Error inesperado..")
+        raise Exception(f"Error inesperado al crear curso")
     #Relanzamos con Raise ambos casos hacia módulo menú
 
 #------------------------------------------------------------------------------------------------------------------------------------
@@ -129,22 +131,23 @@ def mostrar_curso(archivo,modo):
         for profesor in profesores:
             print(f" {profesor[0]:<5} | {profesor[1]:<12} | {profesor[2]:<15}")
         print("~"*40)          
-
         # Impresión de encabezados
-        print('Listado de Cursos')
-        print(f"{'ID':<5}{'ID_profesor':<12}{'Materia':<15}{'Fecha':<15}{'Horario':<15}") 
-        print("-"*65) 
-        linea = mostrar.readline() #Primera linea del archivo
+        print("Listado de Cursos")
+        print(f"{'| ID':<7}{'| ID_profesor':<15}{'| Materia':<18}{'| Fecha':<18}{'| Horario':<18}|")
+        print("-" * 70)
+
+        linea = mostrar.readline()  # Primera línea del archivo
         while linea != '':
-            curso = linea.strip().split(',')#Sacamos espacios vacios y dividimos por comas para craer una lista Curso
-            if len(curso) == 5:  #Omite lineas incompletas
+            curso = linea.strip().split(',')  # Elimina espacios y divide por comas para crear una lista `curso`
+            if len(curso) == 5:  # Omite líneas incompletas
                 id = int(curso[0])
                 id_profesor = int(curso[1])
                 materia = curso[2][:15]
                 fecha = curso[3][:10]
                 horario = curso[4][:15]
-                print(f'{id:<5}{id_profesor:<12}{materia:<15}{fecha:<15}{horario:<15}')
-            linea = mostrar.readline()
+                # Impresión alineada de cada registro
+                print(f"| {id:<5} | {id_profesor:<12} | {materia:<15} | {fecha:<15} | {horario:<15}")
+            linea = mostrar.readline()  # Lee la siguiente línea
         print("-"*65)
 
         
@@ -221,7 +224,7 @@ def actualizar_curso(matriz):
     except ValueError as error:#Excepcion cuando se espera un valor numerico
         raise ValueError(f"Se esperaba un valor Numerico, detalles:{error}")
     except Exception: #Excepcion general
-        raise Exception(f"Error inesperado.") 
+        raise Exception(f"Error inesperado al actualizar curso") 
     #Relanzamos con Raise ambos casos hacia modulo menú
 
 
@@ -245,5 +248,5 @@ def eliminar_curso(matriz):
     except ValueError as err:
         raise ValueError(f"Se esperaba un valor Numerico, detalles:{err}")
     except Exception:
-        raise Exception(f"Error inesperado.")
+        raise Exception(f"Error inesperado al eliminar curso")
     #Relanzamos ambas excepciones con raise hacia modulo menu

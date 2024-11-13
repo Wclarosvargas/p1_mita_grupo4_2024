@@ -1,6 +1,25 @@
 101,14,Matematica,10-09-2004,10:30-14:30
 102,80,Algebra lineal,10-10-2010,10:10-20:10
 103,80,Lengua,11-10-2010,10:10-20:10
-104,80,Fisica,12-10-2010,10:10-20:10
-105,80,Programacion,13-10-2010,10:10-20:10
-106,107,IA,10-02-2020,10:10-10:50
+104,10,Mecánica de Fluidos,12-03-2021,09:00-11:00
+105,14,Programación Orientada a Objetos,13-03-2021,10:10-12:10
+106,16,Sistemas Operativos,14-03-2021,08:00-09:30
+107,18,Cálculo Avanzado,15-03-2021,11:00-13:00
+108,20,Termodinámica,16-03-2021,10:30-12:30
+109,22,Estructura de Datos,17-03-2021,13:00-15:00
+110,40,Resistencia de Materiales,18-03-2021,09:00-10:30
+111,42,Ingeniería de Software,19-03-2021,14:00-16:00
+112,80,Análisis Numérico,20-03-2021,10:00-12:00
+113,82,Electrónica Aplicada,21-03-2021,08:30-10:30
+114,90,Análisis Matemático,22-03-2021,13:30-15:30
+115,92,Base de Datos,23-03-2021,11:00-13:00
+116,10,Procesos Industriales,24-03-2021,09:30-11:30
+117,14,Inteligencia Artificial,25-03-2021,15:00-17:00
+118,16,Física de Materiales,26-03-2021,14:30-16:30
+119,18,Sistemas Distribuidos,27-03-2021,10:00-12:00
+120,20,Dibujo Técnico,28-03-2021,08:00-10:00
+121,22,Matemática Discreta,29-03-2021,13:00-15:00
+122,40,Control de Calidad,30-03-2021,12:00-14:00
+123,42,Redes de Computadoras,31-03-2021,10:00-12:00
+124,80,Teoría de Control,01-04-2021,11:30-13:30
+125,82,Sistemas Embebidos,02-04-2021,09:00-11:00

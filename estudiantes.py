@@ -1,7 +1,7 @@
 from validaciones import validar_promedio,validar_id_estudiantes,validar_nombres
 import json 
 
-#Función recursiva
+#Función recursiva para cargar notas
 def promedio_recursivo(Notas):
     if len(Notas)==1:
         return Notas[0]
@@ -63,38 +63,39 @@ def crearEstudiante(dic_Estudiante):
             Autorizacion=0
             while Autorizacion==0:
                 print("Ingrese su nota de Matematica")
-                Mat=float(input())
-                if validar_promedio(Mat)==1:
+                Matematica=float(input())
+                if validar_promedio(Matematica):
                     Autorizacion=1
                 else:
                     print("Ingrese un numero del 1 al 10")
             while Autorizacion==1:
                 print("Ingrese su nota de Historia")
-                Histori=float(input())
-                if validar_promedio(Histori)==1:
+                Historia=float(input())
+                if validar_promedio(Historia):
                     Autorizacion=0
                 else:
                     print("Ingrese un numero del 1 al 10")
             while Autorizacion==0:
                 print("Ingrese su nota de Biologia")
-                Biology=float(input())
-                if validar_promedio(Biology)==1:
+                Biologia=float(input())
+                if validar_promedio(Biologia):
                     Autorizacion=1
                 else:
                     print("Ingrese un numero del 1 al 10")
             while Autorizacion==1:
                 print("Ingrese su nota de Literatura")
-                Literature=float(input())
-                if validar_promedio(Literature)==1:
+                Literatura=float(input())
+                if validar_promedio(Literatura):
                     Autorizacion=0
                 else:
                     print("Ingrese un numero del 1 al 10")
-            Notas=[Mat,Histori,Biology,Literature]
-            promedio=int((promedio_recursivo(Notas))//4)
+            Notas=[Matematica,Historia,Biologia,Literatura]
+            promedio=int((promedio_recursivo(Notas))//len(Notas))
             if validar_promedio(promedio):
                 promedio_valido = 1
             else:
                 print("El promedio debe estar entre 1 y 10. Por favor, ingrese un promedio válido")
+
         #Alta de un nuevo estudiante.
         nuevo_Estudiante = {
             'id':id, 'nombre':nombre.capitalize(), 'apellido':apellido.capitalize(),'promedio':promedio
@@ -182,7 +183,7 @@ def actualizarEstudiante(dic_estudiantes):
     except ValueError as error:
         raise ValueError(f"Se esperaba un valor numerico , detalles: {error}")
     except Exception:
-        raise Exception("Error inesperado al actualizar")
+        raise Exception("Error inesperado al actualizar estudiantes")
     #Relanzamos ambos errores al Menu
 
 #---------------------------------------------------------------------------------------------------------------------------------        
@@ -209,6 +210,6 @@ def eliminarEstudiante(dic_Estudiante):
     except ValueError as err:
         raise ValueError(f"Se esperaba unvalor numerico, detalles: {err}")
     except Exception:
-        raise Exception(f"Error inesperado al eliminar")
+        raise Exception(f"Error inesperado al eliminar estudiante")
     #Relanzamos ambas excepciones con raise hacia modulo menu
     

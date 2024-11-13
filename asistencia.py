@@ -218,7 +218,7 @@ def eliminar_asistencia(matriz_asistencia):
     except ValueError as err:
         raise ValueError(f"Se esperaba un valor Numerico, detalles:{err}")
     except Exception:
-        raise Exception(f"Error inesperado al eliminar")
+        raise Exception(f"Error inesperado al eliminar asistencia")
     #Relanzamos ambas excepciones con raise hacia modulo menu
 
 

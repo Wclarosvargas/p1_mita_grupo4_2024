@@ -1,9 +1,9 @@
 [
     {
         "id": 1,
-        "nombre": "juan",
+        "nombre": "Juan pablo",
         "apellido": "Nardone",
-        "promedio": 10.0
+        "promedio": 9.0
     },
     {
         "id": 2,
@@ -24,15 +24,177 @@
         "promedio": 8.2
     },
     {
+        "id": 5,
+        "nombre": "Catrina",
+        "apellido": "Burgos",
+        "promedio": 8.2
+    },
+    {
         "id": 6,
         "nombre": "Leonardo",
         "apellido": "Gutierrez",
-        "promedio": 7
+        "promedio": 10.0
     },
     {
-        "id": 8,
+        "id": 7,
         "nombre": "Maria",
         "apellido": "Bonzetti",
         "promedio": 9.0
+    },
+    {
+        "id": 8,
+        "nombre": "Eduardo",
+        "apellido": "Basualdo",
+        "promedio": 2.0
+    },
+    {
+        "id": 7,
+        "nombre": "Ramiro",
+        "apellido": "Leiva",
+        "promedio": 8
+    },
+    {
+        "id": 8,
+        "nombre": "Laura",
+        "apellido": "Ramirez",
+        "promedio": 6.5
+    },
+    {
+        "id": 9,
+        "nombre": "Carlos",
+        "apellido": "Martinez",
+        "promedio": 7.8
+    },
+    {
+        "id": 10,
+        "nombre": "Mariana",
+        "apellido": "Lopez",
+        "promedio": 5.9
+    },
+    {
+        "id": 11,
+        "nombre": "Ricardo",
+        "apellido": "Gomez",
+        "promedio": 8.4
+    },
+    {
+        "id": 12,
+        "nombre": "Isabel",
+        "apellido": "Torres",
+        "promedio": 9.1
+    },
+    {
+        "id": 13,
+        "nombre": "Fernando",
+        "apellido": "Silva",
+        "promedio": 6.3
+    },
+    {
+        "id": 14,
+        "nombre": "Andrea",
+        "apellido": "Ortiz",
+        "promedio": 7.0
+    },
+    {
+        "id": 15,
+        "nombre": "Gabriel",
+        "apellido": "Diaz",
+        "promedio": 8.9
+    },
+    {
+        "id": 16,
+        "nombre": "Paula",
+        "apellido": "Rojas",
+        "promedio": 6.7
+    },
+    {
+        "id": 17,
+        "nombre": "Martin",
+        "apellido": "Herrera",
+        "promedio": 7.5
+    },
+    {
+        "id": 18,
+        "nombre": "Claudia",
+        "apellido": "Sanchez",
+        "promedio": 5.2
+    },
+    {
+        "id": 19,
+        "nombre": "Lucia",
+        "apellido": "Morales",
+        "promedio": 8.8
+    },
+    {
+        "id": 20,
+        "nombre": "Jorge",
+        "apellido": "Vega",
+        "promedio": 7.3
+    },
+    {
+        "id": 21,
+        "nombre": "Valentina",
+        "apellido": "Alvarez",
+        "promedio": 9.2
+    },
+    {
+        "id": 22,
+        "nombre": "Rodrigo",
+        "apellido": "Mendoza",
+        "promedio": 6.1
+    },
+    {
+        "id": 23,
+        "nombre": "Sofia",
+        "apellido": "Castillo",
+        "promedio": 8.5
+    },
+    {
+        "id": 24,
+        "nombre": "Pedro",
+        "apellido": "Iglesias",
+        "promedio": 6.9
+    },
+    {
+        "id": 25,
+        "nombre": "Camila",
+        "apellido": "Benitez",
+        "promedio": 7.4
+    },
+    {
+        "id": 26,
+        "nombre": "Emiliano",
+        "apellido": "Vargas",
+        "promedio": 8.0
+    },
+    {
+        "id": 27,
+        "nombre": "Patricia",
+        "apellido": "Nu\u00f1ez",
+        "promedio": 5.6
+    },
+    {
+        "id": 28,
+        "nombre": "Nicolas",
+        "apellido": "Sosa",
+        "promedio": 9.0
+    },
+    {
+        "id": 29,
+        "nombre": "Daniela",
+        "apellido": "Cruz",
+        "promedio": 6.4
+    },
+    {
+        "id": 30,
+        "nombre": "Miguel",
+        "apellido": "Reyes",
+        "promedio": 7.9
+    },
+    {
+        "id": 31,
+        "nombre": "Juan ",
+        "apellido": "Gallardo",
+        "promedio": 1.5
     }
 ]
