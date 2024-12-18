@@ -1,10 +1,10 @@
 
 from validaciones import validadr_id_unico,validar_promedio,validar_id_estudiantes
-def promedio_recursivo(Notas):
-    if 1==len(Notas):
-        return Notas[0]
-    else:
-        return Notas[0]+ promedio_recursivo(Notas[1:])
+#def promedio_recursivo(Notas):
+ #   if 1==len(Notas):
+  #      return Notas[0]
+   # else:
+    #    return Notas[0]+ promedio_recursivo(Notas[1:])
 from validaciones import validar_promedio,validar_id_estudiantes
 import json 
 
